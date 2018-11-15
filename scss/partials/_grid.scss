@@ -20,9 +20,14 @@ header {
 .grid-container {
     grid-area: game;
     // margin: 0 auto;
-    width: 65%;
+    // width: 65%;
     display: grid;
-    grid-template-columns: repeat(5, minmax(calc(100% / 5), 1fr));
+    grid-template-columns: repeat(5, 1fr);
+    // height: width;
+    // position: relative;
+    // padding-top: 100%;
+    // grid-template-rows: repeat(5, 100px);
+    // grid-template-columns: repeat(5, minmax(calc(100% / 5), 1fr));
     // grid-template-rows: repeat(7, minmax(16px, 1fr));
 }
 

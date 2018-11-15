@@ -9,12 +9,68 @@ const timer = {};
 timer.initialTime = 20;
 timer.timerFunction;
 
-// game.init = function () {
-//   // initial game modal
-// }
+//Jenny: put playerfillgrid and the game timer inside cleargrid, put cleargrid inside the first game timer, put first game timer inside fillgrid (calls only)
+
+grid.init = function() {
+  //do these simultaneously
+  grid.answerGrid = grid.randomGrid(grid.rows);
+  grid.fillGrid(grid.answerGrid);
+  let peekTimer = 10;
+  let initialTimer = setInterval(function() {
+
+    if (peekTimer < 0) {
+      console.log(peekTimer);
+      clearInterval(initialTimer);
+      grid.clearGrid();
+      grid.playerFillGrid();
+
+      let countdown = 10;
+      let playerTimer = setInterval(function() {
+
+        if (countdown < 0) {
+          console.log(countdown);
+          clearInterval(playerTimer);
+          grid.playerGuessToArray();
+          console.log(grid.accuracyCheck(grid.playerGrid, grid.answerGrid));
+        }
+
+        else if (countdown < 10) {
+          $(".timer").html("0:0" + countdown);
+          console.log(countdown);
+        }
+        
+        else {
+          $(".timer").html("0:" + countdown);
+          console.log(countdown);
+        }
+
+        countdown--;
+      }, 1000);
+    }
+    else if (peekTimer < 10) {
+      $(".timer").html("0:0" + peekTimer);
+      console.log(peekTimer);
+    }
+    else {
+      $(".timer").html("0:" + peekTimer);
+      console.log(peekTimer);
+    }
+    peekTimer--;
+  }, 1000)
+
+  //do these after first timer
+  // grid.clearGrid();
+  // grid.playerFillGrid();
+  // timer.gameTimer(30);
+
+  // //do this after timer runs out
+  // grid.playerGuessToArray();
+  // grid.accuracyCheck(grid.playerGrid, grid.answerGrid);
+}
 
 grid.randomGrid = function (rows) {
   filledGrid = []
+  // _.sample random chooses one element in the array of elements in the argument
   for (let currRow = 0; currRow < Math.pow(rows, 2); currRow++) {
     filledGrid.push(_.sample([true, false]));
   }
@@ -22,15 +78,18 @@ grid.randomGrid = function (rows) {
 }
 
 grid.fillGrid = function (gridArray) {
+  // given an array of boolean items, fill the HTML grid
   for (let currItem = 0; currItem < gridArray.length; currItem++) {
     if (gridArray[currItem] === true) {
       console.log($(".tile-" + (currItem + 1)));
       $(".tile-" + (currItem + 1)).addClass("correct-tile");
     }
   }
+
 }
 
 grid.playerFillGrid = function () {
+  // allow the player to toggle the HTML tiles
   $('.tile').on('click', function () {
     $(this).toggleClass("correct-tile");
   })
@@ -39,7 +98,7 @@ grid.playerFillGrid = function () {
 grid.playerGuessToArray = function () {
   grid.playerGrid = [];
   $('.grid-container > .tile').each(function () {
-    // iterate through each child in the .grid-container
+    // iterate through each child in the .grid-container and check if they are selected or not
     if ($(this).hasClass("correct-tile")) {
       grid.playerGrid.push(true);
     }
@@ -51,6 +110,7 @@ grid.playerGuessToArray = function () {
 }
 
 grid.accuracyCheck = function (playerArray, answerArray) {
+  // returns a percentage of how accurate the player's grid with the answer grid
   let correctCount = 0;
   for (let arrayItemCheck = 0; arrayItemCheck < playerArray.length; arrayItemCheck++) {
     if (playerArray[arrayItemCheck] === answerArray[arrayItemCheck]) {
@@ -61,73 +121,18 @@ grid.accuracyCheck = function (playerArray, answerArray) {
 }
 
 grid.clearGrid = function () {
+  // clears the HTML grid
   $(".tile").removeClass("correct-tile");
 }
 
 
 //broken
 timer.gameTimer = function (seconds) {
-  if (timer.initialTime < 0) {
-    console.log(timerFunction);
-    clearInterval(timer.timerFunction);
-    return true;
-    // quit game, display results
-  }
-  else if (timer.initialTime < 10) {
-    $(".timer").html("0:0" + timer.initialTime);
-    timer.initialTime--;
-    console.log(timer.initialTime);
-  }
-  else {
-    $(".timer").html("0:" + timer.initialTime);
-    timer.initialTime--;
-    console.log(timer.initialTime);
-  }
+
 }
 
 $(function() {
-  grid.answerGrid = grid.randomGrid(grid.rows);
-  grid.fillGrid(grid.answerGrid);
-  // timer.timerFunction = setInterval(timer.gameTimer, 1000);
-
-  
-
-  // console.log(grid.answerGrid);
-
-  // function obstacleMove(tileRow) {
-  //   let speed = 200;
-  //   let delayTime = 1000;
-  //   let frame = 1;
-  //   let xPosition = 1;
-
-  //   while (true) {
-  //     // reset the frames to 1 based on the row
-  //     if (frame % 6 == 0) {
-  //       xPosition = 1;
-  //     }
-
-  //     // ** replace .box with .tile in future **
-  //     let currPosition = $('.tile-x' + xPosition + tileRow);
-
-  //     setInterval(() => drawObstacle(currPosition), (frame - 1) * (delayTime + speed));
-
-  //     frame++;
-  //     xPosition++;
-  //   }
-  // };
-
-  // function drawObstacle(position) {
-  //   // removes all instance of the obstacle
-  //   $('.tile').removeClass("obstacle-salad");
-  //   // adds the obstacle at the specified argument
-  //   position.addClass("obstacle-salad");
-  //   // checks if the pug is there, if so, remove it
-  //   if (position.hasClass("pug")) {
-  //     position.removeClass("pug");
-  //   }
-  // }
-
-  // obstacleMove('y1');
+  grid.init();
 });
 
 

@@ -12,9 +12,8 @@ header {
 
 .grid-container {
   grid-area: game;
-  width: 65%;
   display: grid;
-  grid-template-columns: repeat(5, minmax(calc(100% / 5), 1fr)); }
+  grid-template-columns: repeat(5, 1fr); }
 
 .tile::before {
   content: "";
