@@ -1,6 +1,18 @@
+body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 10vh 80vh 10vh;
+  grid-template-areas: "header header header" "options game game" "footer footer footer"; }
+
+header {
+  grid-area: header; }
+
+.game-options {
+  grid-area: options; }
+
 .grid-container {
-  margin: 0 auto;
-  width: 35%;
+  grid-area: game;
+  width: 65%;
   display: grid;
   grid-template-columns: repeat(5, minmax(calc(100% / 5), 1fr)); }
 
@@ -18,3 +30,6 @@
 
 .correct-tile {
   background: black; }
+
+footer {
+  grid-area: footer; }

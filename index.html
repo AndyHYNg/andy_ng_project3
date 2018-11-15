@@ -8,6 +8,20 @@
     <link rel='stylesheet' href='css/main.css'>
 </head>
 <body>
+    <header>
+        <h1>Forgrid Me Not!</h1>
+    </header>
+    <div class="game-options">
+        <h2>Options</h2>
+        <form>
+            <label class="options-difficulty" for="easy">Easy</label>
+            <input id="easy" type="radio" name="level" value="easy"> 
+            <label class="options-difficulty" for="easy">Medium</label>
+            <input id="easy" type="radio" name="level" value="easy" checked="">
+            <label class="options-difficulty" for="easy">Hard</label>
+            <input id="easy" type="radio" name="level" value="easy">
+        </form>
+    </div>
     <div class="grid-container">
         <div class="tile tile-1"></div>
         <div class="tile tile-2"></div>
@@ -35,9 +49,9 @@
         <div class="tile tile-24"></div>
         <div class="tile tile-25"></div>
     </div>
-
-    <p class="timer"></p>
-
+    <footer>
+        <p>Copyright</p>
+    </footer>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="js/app.js"></script>

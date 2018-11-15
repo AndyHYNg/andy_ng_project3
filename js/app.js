@@ -7,84 +7,88 @@ grid.tileClassArray = [];
 
 const timer = {};
 timer.initialTime = 20;
+timer.timerFunction;
 
-$(function() {
+// game.init = function () {
+//   // initial game modal
+// }
 
-  grid.randomGrid = function(rows) {
-    filledGrid = []
-    for (let currRow = 0; currRow < Math.pow(rows, 2); currRow++) {
-      filledGrid.push(_.sample([true, false]));
+grid.randomGrid = function (rows) {
+  filledGrid = []
+  for (let currRow = 0; currRow < Math.pow(rows, 2); currRow++) {
+    filledGrid.push(_.sample([true, false]));
+  }
+  return filledGrid;
+}
+
+grid.fillGrid = function (gridArray) {
+  for (let currItem = 0; currItem < gridArray.length; currItem++) {
+    if (gridArray[currItem] === true) {
+      console.log($(".tile-" + (currItem + 1)));
+      $(".tile-" + (currItem + 1)).addClass("correct-tile");
     }
-    return filledGrid;
   }
+}
 
-  grid.fillGrid = function(gridArray) {
-    for (let currItem = 0; currItem < gridArray.length; currItem++) {
-      if (gridArray[currItem] === true) {
-        console.log($(".tile-" + (currItem + 1)));
-        $(".tile-" + (currItem+1)).addClass("correct-tile"); 
-      }
-    }
-  }
+grid.playerFillGrid = function () {
+  $('.tile').on('click', function () {
+    $(this).toggleClass("correct-tile");
+  })
+}
 
-  grid.playerFillGrid = function() {
-    $('.tile').on('click', function() {
-      $(this).toggleClass("correct-tile");
-    })
-  } 
-
-  grid.playerGuessToArray = function() {
-    grid.playerGrid = [];
-    $('.grid-container > .tile').each(function () {
-      // iterate through each child in the .grid-container
-      if ($(this).hasClass("correct-tile")) {
-        grid.playerGrid.push(true);
-      }
-      else {
-        grid.playerGrid.push(false)
-      }
-    })
-    console.log(grid.tileClassArray);
-  }
-
-  grid.accuracyCheck = function(playerArray, answerArray) {
-    let correctCount = 0;
-    for (let arrayItemCheck = 0; arrayItemCheck < playerArray.length; arrayItemCheck++) {
-      if (playerArray[arrayItemCheck] === answerArray[arrayItemCheck]) {
-        correctCount++;
-      }
-    }
-    return Math.floor(correctCount / playerArray.length * 100);
-  }
-
-  grid.clearGrid = function() {
-    $(".tile").removeClass("correct-tile");
-  }
-
-  timer.gameTimer = function() {
-    if (timer.initialTime < 0) {
-      console.log("timer ended");
-      clearInterval(timerFunction);
-      return true;
-      // quit game, display results
-    }
-    else if (timer.initialTime < 10) {
-      $(".timer").html("0:0" + timer.initialTime);
-      timer.initialTime--;
-      console.log(timer.initialTime);
+grid.playerGuessToArray = function () {
+  grid.playerGrid = [];
+  $('.grid-container > .tile').each(function () {
+    // iterate through each child in the .grid-container
+    if ($(this).hasClass("correct-tile")) {
+      grid.playerGrid.push(true);
     }
     else {
-      $(".timer").html("0:" + timer.initialTime);
-      timer.initialTime--;
-      console.log(timer.initialTime);
+      grid.playerGrid.push(false)
+    }
+  })
+  console.log(grid.tileClassArray);
+}
+
+grid.accuracyCheck = function (playerArray, answerArray) {
+  let correctCount = 0;
+  for (let arrayItemCheck = 0; arrayItemCheck < playerArray.length; arrayItemCheck++) {
+    if (playerArray[arrayItemCheck] === answerArray[arrayItemCheck]) {
+      correctCount++;
     }
   }
+  return Math.floor(correctCount / playerArray.length * 100);
+}
 
-  
+grid.clearGrid = function () {
+  $(".tile").removeClass("correct-tile");
+}
 
+
+//broken
+timer.gameTimer = function (seconds) {
+  if (timer.initialTime < 0) {
+    console.log(timerFunction);
+    clearInterval(timer.timerFunction);
+    return true;
+    // quit game, display results
+  }
+  else if (timer.initialTime < 10) {
+    $(".timer").html("0:0" + timer.initialTime);
+    timer.initialTime--;
+    console.log(timer.initialTime);
+  }
+  else {
+    $(".timer").html("0:" + timer.initialTime);
+    timer.initialTime--;
+    console.log(timer.initialTime);
+  }
+}
+
+$(function() {
   grid.answerGrid = grid.randomGrid(grid.rows);
   grid.fillGrid(grid.answerGrid);
-  let timerFunction = setInterval(timer.gameTimer, 1000);
+  // timer.timerFunction = setInterval(timer.gameTimer, 1000);
 
   
 
