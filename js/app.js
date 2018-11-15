@@ -19,7 +19,6 @@ $(function() {
   }
 
   grid.fillGrid = function(gridArray) {
-    gridArray = [];
     for (let currItem = 0; currItem < gridArray.length; currItem++) {
       if (gridArray[currItem] === true) {
         console.log($(".tile-" + (currItem + 1)));
@@ -38,17 +37,24 @@ $(function() {
     grid.playerGrid = [];
     $('.grid-container > .tile').each(function () {
       // iterate through each child in the .grid-container
-      if (this.hasClass("correct-tile")) {
-        // get all classes of the current element
-        grid.tileClassArray = $(this).attr("class").split(" ");
-        for (let tile = 0; tile < tileClassArray.length; tile++) {
-          if (grid.tileClassArray[tile].test(/tile-/)) {
-            grid["playerGrid"].push(grid.tileClassArray[tile]);
-          }
-        }
+      if ($(this).hasClass("correct-tile")) {
+        grid.playerGrid.push(true);
       }
-      this.removeClass("correct-tile");
+      else {
+        grid.playerGrid.push(false)
+      }
     })
+    console.log(grid.tileClassArray);
+  }
+
+  grid.accuracyCheck = function(playerArray, answerArray) {
+    let correctCount = 0;
+    for (let arrayItemCheck = 0; arrayItemCheck < playerArray.length; arrayItemCheck++) {
+      if (playerArray[arrayItemCheck] === answerArray[arrayItemCheck]) {
+        correctCount++;
+      }
+    }
+    return Math.floor(correctCount / playerArray.length * 100);
   }
 
   grid.clearGrid = function() {
@@ -62,6 +68,11 @@ $(function() {
       return true;
       // quit game, display results
     }
+    else if (timer.initialTime < 10) {
+      $(".timer").html("0:0" + timer.initialTime);
+      timer.initialTime--;
+      console.log(timer.initialTime);
+    }
     else {
       $(".timer").html("0:" + timer.initialTime);
       timer.initialTime--;
@@ -71,8 +82,8 @@ $(function() {
 
   
 
-  answerGrid = grid.randomGrid(grid.rows);
-  grid.fillGrid(answerGrid);
+  grid.answerGrid = grid.randomGrid(grid.rows);
+  grid.fillGrid(grid.answerGrid);
   let timerFunction = setInterval(timer.gameTimer, 1000);
 
   
