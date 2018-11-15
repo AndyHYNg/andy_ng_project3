@@ -8,18 +8,19 @@
     <link rel='stylesheet' href='css/main.css'>
 </head>
 <body>
-    <header>
+    <header class="header">
         <h1>Forgrid Me Not!</h1>
     </header>
     <div class="game-options">
         <h2>Options</h2>
-        <form>
-            <label class="options-difficulty" for="easy">Easy</label>
+        <form class="game-options__container">
+            <label class="game-options-difficulty" for="easy">Easy</label>
             <input id="easy" type="radio" name="level" value="easy"> 
-            <label class="options-difficulty" for="easy">Medium</label>
-            <input id="easy" type="radio" name="level" value="easy" checked="">
-            <label class="options-difficulty" for="easy">Hard</label>
-            <input id="easy" type="radio" name="level" value="easy">
+            <label class="game-options-difficulty" for="medium">Medium</label>
+            <input id="medium" type="radio" name="level" value="medium" checked="">
+            <label class="game-options-difficulty" for="hard">Hard</label>
+            <input id="hard" type="radio" name="level" value="hard">
+            <input type="submit" value="Start!">
             <!--put submit form to "start" difficulty-->
         </form>
         <p class=timer></p>
@@ -50,6 +51,9 @@
         <div class="tile tile-23"></div>
         <div class="tile tile-24"></div>
         <div class="tile tile-25"></div>
+    </div>
+    <div class="game-results game-results--hidden">
+        <span class="game-results__accuracy"></span>
     </div>
     <footer>
         <p>Copyright</p>
