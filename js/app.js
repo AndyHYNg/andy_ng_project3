@@ -11,51 +11,56 @@ timer.peekTimer = 0;
 timer.countdown = 0;
 timer.playerTimer = 0;
 
-//Jenny: put playerfillgrid and the game timer inside cleargrid, put cleargrid inside the first game timer, put first game timer inside fillgrid (calls only)
-
 grid.init = function() {
-
   grid.difficultyCheck();
   grid.checkStart();
-
-
-  //do these after first timer
-  // grid.clearGrid();
-  // grid.playerFillGrid();
-  // timer.gameTimer(30);
-
-  // //do this after timer runs out
-  // grid.playerGuessToArray();
-  // grid.accuracyCheck(grid.playerGrid, grid.answerGrid);
 }
 
 grid.checkStart = function() {
+  // Starts the game as soon as 'Start!' button is pushed
   $("form").on('submit', function(event){
     event.preventDefault();
+
+    // If the game still running, reset all necessary functions to prevent errors/bugs
     grid.reset();
+
+    // Randomly fills the grid
     grid.answerGrid = grid.randomGrid(grid.rows);
     grid.fillGrid(grid.answerGrid);
+
+    // Gives the player 10 seconds to look at the answer grid (peek timer)
     timer.peekTimer = 10;
     timer.initialTimer = setInterval(function () {
 
+      // As soon as the peek timer runs out...
       if (timer.peekTimer < 0) {
-        console.log(timer.peekTimer);
+
+        // Stops the timer from counting down to negative values, wipe out the grid, and allow the player the interact the grid and toggle the tiles they need to replicate the answer grid
         clearInterval(timer.initialTimer);
         grid.clearGrid();
         grid.playerFillGrid();
 
+        // Gives the player a countdown timer to play the game
         timer.countdown = 10;
         timer.playerTimer = setInterval(function () {
 
+          // During any point in the game after the peek timer, player can force the game to check his/her answer and end the game via 'Check!' button
+          grid.forceCheck();
+
+          // As soon as the countdown timer runs out...
           if (timer.countdown < 0) {
-            console.log(timer.countdown);
+
+            // Stops the timer from counting down to negative values, disables the interaction of toggling the grid tiles...
             clearInterval(timer.playerTimer);
             grid.disablePlayerFillGrid();
+
+            // ...Checks the results of the player's grid in relation to the answer grid and output the results (accuracy percentage)
             grid.playerGuessToArray();
             console.log(grid.accuracyCheck(grid.playerGrid, grid.answerGrid));
             grid.displayResults();
           }
 
+          // Adds an extra '0' in the displayed timer when the timer hits single digits
           else if (timer.countdown < 10) {
             $(".timer").html("0:0" + timer.countdown);
             console.log(timer.countdown);
@@ -69,6 +74,8 @@ grid.checkStart = function() {
           timer.countdown--;
         }, 1000);
       }
+
+      // Adds an extra '0' in the displayed timer when the timer hits single digits
       else if (timer.peekTimer < 10) {
         $(".timer").html("0:0" + timer.peekTimer);
         console.log(timer.peekTimer);
@@ -83,46 +90,42 @@ grid.checkStart = function() {
 }
 
 grid.difficultyCheck = function() {
+  // listens to buttons in the 'Options' section
   $(".game-options__container").on("click", function() {
-    grid.hideResults();
+    grid.reset();
+    // grid.hideResults();
     let difficulty = $('input[name=level]:checked').val();
+    let tileStyle = $('input[name=tile]:checked').val();
     if (difficulty === "easy") {
-      grid.rows = 3;
-      $('.grid-container').empty();
-      for (let count = 0; count < Math.pow(3, 2); count++) {
-        $('.grid-container').append(`<div class="tile tile-${count+1}"></div>`);
-      }
-      $('.grid-container').css("grid-template-columns", "repeat(3, 1fr)");
+      grid.changeGrid(3);
     }
     else if (difficulty === "medium") {
-      grid.rows = 4;
-      $('.grid-container').empty();
-      for (let count = 0; count < Math.pow(4, 2); count++) {
-        $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
-      }
-      $('.grid-container').css("grid-template-columns", "repeat(4, 1fr)");
+      grid.changeGrid(4);
     }
     else if (difficulty === "hard") {
-      grid.rows = 5;
-      $('.grid-container').empty();
-      for (let count = 0; count < Math.pow(5, 2); count++) {
-        $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
-      }
-      $('.grid-container').css("grid-template-columns", "repeat(5, 1fr)");
+      grid.changeGrid(5);
     }
     else if (difficulty === "wizard") {
-      grid.rows = 6;
-      $('.grid-container').empty();
-      for (let count = 0; count < Math.pow(6, 2); count++) {
-        $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
-      }
-      $('.grid-container').css("grid-template-columns", "repeat(6, 1fr)");
+      grid.changeGrid(6);
+    }
+    if (tileStyle === "pug") {
+      $('.correct-tile').css('background-image', `url("../../assets/pug.png")`);
     }
   });
 }
 
+grid.changeGrid = function(rows) {
+  // change the grid layout based on number of rows specified
+  grid.rows = rows;
+  $('.grid-container').empty();
+  for (let count = 0; count < Math.pow(rows, 2); count++) {
+    $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
+  }
+  $('.grid-container').css(`grid-template-columns`, `repeat(${rows}, calc(100%/${rows})`);
+}
+
 grid.randomGrid = function (rows) {
-  filledGrid = []
+  filledGrid = [];
   // _.sample random chooses one element in the array of elements in the argument
   for (let currRow = 0; currRow < Math.pow(rows, 2); currRow++) {
     filledGrid.push(_.sample([true, false]));
@@ -141,11 +144,24 @@ grid.fillGrid = function (gridArray) {
 }
 
 grid.reset = function() {
+  // reset the game
   grid.clearGrid();
   grid.hideResults();
   grid.disablePlayerFillGrid();
   clearInterval(timer.initialTimer);
   clearInterval(timer.playerTimer);
+}
+
+grid.forceCheck = function() {
+  // 'Check!' button interaction
+  $('.game-menu__check-button').on('click', function() {
+    console.log("clicked me");
+    grid.playerGuessToArray();
+    grid.accuracyCheck(grid.playerGrid, grid.answerGrid);
+    grid.displayResults();
+    clearInterval(timer.initialTimer);
+    clearInterval(timer.playerTimer);
+  });
 }
 
 grid.playerFillGrid = function () {
@@ -197,7 +213,6 @@ grid.clearGrid = function () {
   // clears the HTML grid
   $(".tile").removeClass("correct-tile");
 }
-
 
 $(function() {
   grid.init();

@@ -9,9 +9,8 @@ body {
     margin: 0 10%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 10vh 5vh 80vh 5vh;
+    grid-template-rows: 10vh 85vh 5vh;
     grid-template-areas: "header header header header"
-                         "options menu menu menu"
                          "options game game game"
                          "footer footer footer footer";
 }
@@ -21,10 +20,10 @@ header {
 }
 
 .game-menu {
+    background-color: $secondary-color;
     grid-area: menu;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .grid-container {
@@ -32,7 +31,7 @@ header {
     margin: 0 auto;
     grid-area: game;
     display: grid;
-    grid-template-columns: repeat(5, calc(100%/5));
+    grid-template-columns: repeat(4, calc(100%/4));
     justify-content: center;
 }
 
@@ -42,6 +41,8 @@ header {
 
 .correct-tile {
     background: $accent-color;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .game-results {
@@ -54,6 +55,7 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .game-results--hidden {
     display: none;
 }

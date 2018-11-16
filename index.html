@@ -14,22 +14,33 @@
     <div class="game-options">
         <h2 class="game-options-title">Options</h2>
         <form class="game-options__container">
-            <input class="game-options-radio" id="easy" type="radio" name="level" value="easy">
-            <label class="game-options-labels" for="easy">Easy</label>
-            <input class="game-options-radio" id="medium" type="radio" name="level" value="medium" checked="">
-            <label class="game-options-labels" for="medium">Medium</label>
-            <input class="game-options-radio" id="hard" type="radio" name="level" value="hard">
-            <label class="game-options-labels" for="hard">Hard</label>
-            <input class="game-options-radio" id="wizard" type="radio" name="level" value="wizard">
-            <label class="game-options-labels" for="wizard">Wizard</label>
+            <section class="game-options__section" id="level">
+                <input class="game-options-radio" id="easy" type="radio" name="level" value="easy">
+                <label class="game-options-labels" for="easy">Easy</label>
+                <input class="game-options-radio" id="medium" type="radio" name="level" value="medium" checked="">
+                <label class="game-options-labels" for="medium">Medium</label>
+                <input class="game-options-radio" id="hard" type="radio" name="level" value="hard">
+                <label class="game-options-labels" for="hard">Hard</label>
+                <input class="game-options-radio" id="wizard" type="radio" name="level" value="wizard">
+                <label class="game-options-labels" for="wizard">Wizard</label>
+            </section>
+            <section class="game-options__section" id="tile">
+                <input class="game-options-radio" id="default" type="radio" name="tile" value="default">
+                <label class="game-options-labels" for="default">Default</label>
+                <input class="game-options-radio" id="pug" type="radio" name="tile" value="pug">
+                <label class="game-options-labels" for="pug">Pug</label>
+                <input class="game-options-radio" id="prepros" type="radio" name="tile" value="prepros">
+                <label class="game-options-labels" for="prepros">Prepros</label>
+                <input class="game-options-radio" id="salad" type="radio" name="tile" value="salad">
+                <label class="game-options-labels" for="salad">Salad</label>
+            </section>
             <input type="submit" value="Start!">
         </form>
+        <div class="game-menu">
+            <p class="timer">0:00</p>
+            <button class="game-menu__check-button">Check!</button>
+        </div>
     </div>  
-    <div class="game-menu">
-        <div class="empty"></div>
-        <p class="timer">0:00</p>
-        <button>Check!</button>
-    </div>
     <div class="grid-container">
         <div class="tile tile-1"></div>
         <div class="tile tile-2"></div>
@@ -47,15 +58,6 @@
         <div class="tile tile-14"></div>
         <div class="tile tile-15"></div>
         <div class="tile tile-16"></div>
-        <div class="tile tile-17"></div>
-        <div class="tile tile-18"></div>
-        <div class="tile tile-19"></div>
-        <div class="tile tile-20"></div>
-        <div class="tile tile-21"></div>
-        <div class="tile tile-22"></div>
-        <div class="tile tile-23"></div>
-        <div class="tile tile-24"></div>
-        <div class="tile tile-25"></div>
     </div>
     <div class="game-results game-results--hidden">
         <span class="game-results__accuracy"></span>

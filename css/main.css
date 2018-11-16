@@ -4,6 +4,15 @@
 .game-options {
   text-align: center;
   grid-area: options; }
+  .game-options__section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 20px; }
   .game-options__container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -19,6 +28,8 @@
     opacity: 0; }
   .game-options-radio:focus + label {
     outline: #41521f auto 3px; }
+  .game-options-radio:checked + label {
+    background-color: #d0b17a; }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }
@@ -159,29 +170,28 @@ body {
   margin: 0 10%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 10vh 5vh 80vh 5vh;
-  grid-template-areas: "header header header header" "options menu menu menu" "options game game game" "footer footer footer footer"; }
+  grid-template-rows: 10vh 85vh 5vh;
+  grid-template-areas: "header header header header" "options game game game" "footer footer footer footer"; }
 
 header {
   grid-area: header; }
 
 .game-menu {
+  background-color: #a89f68;
   grid-area: menu;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center; }
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
 
 .grid-container {
   width: 65%;
   margin: 0 auto;
   grid-area: game;
   display: grid;
-  grid-template-columns: repeat(5, calc(100%/5));
+  grid-template-columns: repeat(4, calc(100%/4));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center; }
@@ -190,7 +200,9 @@ header {
   border: 1px solid black; }
 
 .correct-tile {
-  background: #41521f; }
+  background: #41521f;
+  background-position: center;
+  background-repeat: no-repeat; }
 
 .game-results {
   text-align: center;

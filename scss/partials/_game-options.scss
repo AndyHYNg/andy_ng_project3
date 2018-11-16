@@ -2,9 +2,11 @@
     text-align: center;
     grid-area: options;
 
-    // &-title {
-
-    // }
+    &__section {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
 
     &__container {
         display: flex;
@@ -23,5 +25,9 @@
 
     &-radio:focus + label {
         outline: $accent-color auto 3px;
+    }
+
+    &-radio:checked + label {
+        background-color: $primary-color;
     }
 }
