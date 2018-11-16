@@ -1,13 +1,15 @@
 
 const grid = {};
-grid.rows = 5;
+grid.rows = 4;
 grid.answerGrid = [];
 grid.playerGrid = [];
 grid.tileClassArray = [];
 
 const timer = {};
-timer.initialTime = 20;
-timer.timerFunction;
+timer.initialTimer = 0;
+timer.peekTimer = 0;
+timer.countdown = 0;
+timer.playerTimer = 0;
 
 //Jenny: put playerfillgrid and the game timer inside cleargrid, put cleargrid inside the first game timer, put first game timer inside fillgrid (calls only)
 
@@ -30,81 +32,89 @@ grid.init = function() {
 grid.checkStart = function() {
   $("form").on('submit', function(event){
     event.preventDefault();
-    grid.clearGrid();
-    //do these simultaneously
+    grid.reset();
     grid.answerGrid = grid.randomGrid(grid.rows);
     grid.fillGrid(grid.answerGrid);
-    let peekTimer = 10;
-    let initialTimer = setInterval(function () {
+    timer.peekTimer = 10;
+    timer.initialTimer = setInterval(function () {
 
-      if (peekTimer < 0) {
-        console.log(peekTimer);
-        clearInterval(initialTimer);
+      if (timer.peekTimer < 0) {
+        console.log(timer.peekTimer);
+        clearInterval(timer.initialTimer);
         grid.clearGrid();
         grid.playerFillGrid();
 
-        let countdown = 10;
-        let playerTimer = setInterval(function () {
+        timer.countdown = 10;
+        timer.playerTimer = setInterval(function () {
 
-          if (countdown < 0) {
-            console.log(countdown);
-            clearInterval(playerTimer);
+          if (timer.countdown < 0) {
+            console.log(timer.countdown);
+            clearInterval(timer.playerTimer);
             grid.disablePlayerFillGrid();
             grid.playerGuessToArray();
             console.log(grid.accuracyCheck(grid.playerGrid, grid.answerGrid));
             grid.displayResults();
           }
 
-          else if (countdown < 10) {
-            $(".timer").html("0:0" + countdown);
-            console.log(countdown);
+          else if (timer.countdown < 10) {
+            $(".timer").html("0:0" + timer.countdown);
+            console.log(timer.countdown);
           }
 
           else {
-            $(".timer").html("0:" + countdown);
-            console.log(countdown);
+            $(".timer").html("0:" + timer.countdown);
+            console.log(timer.countdown);
           }
 
-          countdown--;
+          timer.countdown--;
         }, 1000);
       }
-      else if (peekTimer < 10) {
-        $(".timer").html("0:0" + peekTimer);
-        console.log(peekTimer);
+      else if (timer.peekTimer < 10) {
+        $(".timer").html("0:0" + timer.peekTimer);
+        console.log(timer.peekTimer);
       }
       else {
-        $(".timer").html("0:" + peekTimer);
-        console.log(peekTimer);
+        $(".timer").html("0:" + timer.peekTimer);
+        console.log(timer.peekTimer);
       }
-      peekTimer--;
+      timer.peekTimer--;
     }, 1000)
   });
 }
 
 grid.difficultyCheck = function() {
   $(".game-options__container").on("click", function() {
+    grid.hideResults();
     let difficulty = $('input[name=level]:checked').val();
     if (difficulty === "easy") {
+      grid.rows = 3;
+      $('.grid-container').empty();
+      for (let count = 0; count < Math.pow(3, 2); count++) {
+        $('.grid-container').append(`<div class="tile tile-${count+1}"></div>`);
+      }
+      $('.grid-container').css("grid-template-columns", "repeat(3, 1fr)");
+    }
+    else if (difficulty === "medium") {
       grid.rows = 4;
       $('.grid-container').empty();
       for (let count = 0; count < Math.pow(4, 2); count++) {
-        $('.grid-container').append(`<div class="tile tile-${count+1}"</div>`);
+        $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
       }
       $('.grid-container').css("grid-template-columns", "repeat(4, 1fr)");
     }
-    else if (difficulty === "medium") {
+    else if (difficulty === "hard") {
       grid.rows = 5;
       $('.grid-container').empty();
       for (let count = 0; count < Math.pow(5, 2); count++) {
-        $('.grid-container').append(`<div class="tile tile-${count + 1}"</div>`);
+        $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
       }
       $('.grid-container').css("grid-template-columns", "repeat(5, 1fr)");
     }
-    else if (difficulty === "hard") {
+    else if (difficulty === "wizard") {
       grid.rows = 6;
       $('.grid-container').empty();
       for (let count = 0; count < Math.pow(6, 2); count++) {
-        $('.grid-container').append(`<div class="tile tile-${count + 1}"</div>`);
+        $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
       }
       $('.grid-container').css("grid-template-columns", "repeat(6, 1fr)");
     }
@@ -128,7 +138,14 @@ grid.fillGrid = function (gridArray) {
       $(".tile-" + (currItem + 1)).addClass("correct-tile");
     }
   }
+}
 
+grid.reset = function() {
+  grid.clearGrid();
+  grid.hideResults();
+  grid.disablePlayerFillGrid();
+  clearInterval(timer.initialTimer);
+  clearInterval(timer.playerTimer);
 }
 
 grid.playerFillGrid = function () {
@@ -145,6 +162,10 @@ grid.disablePlayerFillGrid = function () {
 grid.displayResults = function() {
   $('.game-results').removeClass('game-results--hidden');
   $('.game-results__accuracy').html(`Accuracy: ${grid.accuracyCheck(grid.playerGrid, grid.answerGrid)}%`);
+}
+
+grid.hideResults = function() {
+  $('.game-results').addClass('game-results--hidden');
 }
 
 grid.playerGuessToArray = function () {
@@ -177,11 +198,6 @@ grid.clearGrid = function () {
   $(".tile").removeClass("correct-tile");
 }
 
-
-//broken
-timer.gameTimer = function (seconds) {
-
-}
 
 $(function() {
   grid.init();

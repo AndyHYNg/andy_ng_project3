@@ -9,21 +9,26 @@
 </head>
 <body>
     <header class="header">
-        <h1>Forgrid Me Not!</h1>
+        <h1 class="header-h1">Forgrid Me Not!</h1>
     </header>
     <div class="game-options">
-        <h2>Options</h2>
+        <h2 class="game-options-title">Options</h2>
         <form class="game-options__container">
-            <label class="game-options-difficulty" for="easy">Easy</label>
-            <input id="easy" type="radio" name="level" value="easy"> 
-            <label class="game-options-difficulty" for="medium">Medium</label>
-            <input id="medium" type="radio" name="level" value="medium" checked="">
-            <label class="game-options-difficulty" for="hard">Hard</label>
-            <input id="hard" type="radio" name="level" value="hard">
+            <input class="game-options-radio" id="easy" type="radio" name="level" value="easy">
+            <label class="game-options-labels" for="easy">Easy</label>
+            <input class="game-options-radio" id="medium" type="radio" name="level" value="medium" checked="">
+            <label class="game-options-labels" for="medium">Medium</label>
+            <input class="game-options-radio" id="hard" type="radio" name="level" value="hard">
+            <label class="game-options-labels" for="hard">Hard</label>
+            <input class="game-options-radio" id="wizard" type="radio" name="level" value="wizard">
+            <label class="game-options-labels" for="wizard">Wizard</label>
             <input type="submit" value="Start!">
-            <!--put submit form to "start" difficulty-->
         </form>
-        <p class=timer></p>
+    </div>  
+    <div class="game-menu">
+        <div class="empty"></div>
+        <p class="timer">0:00</p>
+        <button>Check!</button>
     </div>
     <div class="grid-container">
         <div class="tile tile-1"></div>
@@ -55,8 +60,8 @@
     <div class="game-results game-results--hidden">
         <span class="game-results__accuracy"></span>
     </div>
-    <footer>
-        <p>Copyright</p>
+    <footer class="footer">
+        <p class="footer-text">&copy; Andy Ng 2018</p>
     </footer>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>

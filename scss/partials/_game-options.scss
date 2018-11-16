@@ -1,0 +1,27 @@
+.game-options {
+    text-align: center;
+    grid-area: options;
+
+    // &-title {
+
+    // }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-labels {
+        background-color: $accent-color;
+        // margin: 5px 100px;
+    }
+
+    &-radio {
+        position: absolute;
+        opacity: 0;
+    }
+
+    &-radio:focus + label {
+        outline: $accent-color auto 3px;
+    }
+}
