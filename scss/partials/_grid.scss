@@ -43,6 +43,11 @@ header {
     background: $accent-color;
     background-position: center;
     background-repeat: no-repeat;
+
+    &--pug {
+        background: url("../../assets/pug.png");
+
+    }
 }
 
 .game-results {

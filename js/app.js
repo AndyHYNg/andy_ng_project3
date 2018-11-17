@@ -1,9 +1,13 @@
+// when selecting tile, you need to adjust fillgrid and enable player fill grid with a modifier of the selected tile
+
 
 const grid = {};
 grid.rows = 4;
 grid.answerGrid = [];
 grid.playerGrid = [];
 grid.tileClassArray = [];
+// gets all stylesheet properties
+grid.stylesheetRules = (document.styleSheets[0]).cssRules;
 
 const timer = {};
 timer.initialTimer = 0;
@@ -108,8 +112,14 @@ grid.difficultyCheck = function() {
     else if (difficulty === "wizard") {
       grid.changeGrid(6);
     }
-    if (tileStyle === "pug") {
-      $('.correct-tile').css('background-image', `url("../../assets/pug.png")`);
+    if (tileStyle === "pug" || tileStyle === "prepros" || tileStyle === "salad") {
+      for (let styles = 0; styles < grid.stylesheetRules.length; styles++) {
+        if (grid.stylesheetRules[styles].selectorText === '.correct-tile') {
+          grid.stylesheetRules[styles].style['background-color'] = 'initial';
+          // add if statement based on which tileStyle
+          grid.stylesheetRules[styles].style['background-image'] = `url('../../assets/pug.png')`;
+        }
+      }
     }
   });
 }
