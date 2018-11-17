@@ -33,6 +33,7 @@ grid.startGame = function() {
     grid.fillGrid(grid.answerGrid);
 
     // Gives the player 10 seconds to look at the answer grid (peek timer)
+    timer.peekTimer = 10;
     timer.initialTimer = setInterval(grid.peekPhase, 1000)
   });
 }
@@ -47,6 +48,7 @@ grid.peekPhase = function () {
     grid.playerFillGrid();
 
     // Gives the player a countdown timer to play the game
+    timer.countdown = 15;
     timer.playerTimer = setInterval(grid.playerPhase, 1000);
   }
 
@@ -147,7 +149,6 @@ grid.fillGrid = function (gridArray) {
   // given an array of boolean items, fill the HTML grid
   for (let currItem = 0; currItem < gridArray.length; currItem++) {
     if (gridArray[currItem] === true) {
-      console.log($(".tile-" + (currItem + 1)));
       $(".tile-" + (currItem + 1)).addClass("correct-tile");
     }
   }
@@ -165,7 +166,6 @@ grid.reset = function() {
 grid.forceCheck = function() {
   // 'Check!' button interaction
   $('.game-menu__check-button').on('click', function() {
-    console.log("clicked me");
     grid.playerGuessToArray();
     grid.accuracyCheck(grid.playerGrid, grid.answerGrid);
     grid.displayResults();
@@ -186,12 +186,16 @@ grid.disablePlayerFillGrid = function () {
 }
 
 grid.displayResults = function() {
-  $('.game-results').removeClass('game-results--hidden');
   $('.game-results__accuracy').html(`Accuracy: ${grid.accuracyCheck(grid.playerGrid, grid.answerGrid)}%`);
+  $('.game-results').fadeIn('slow', function () {
+    $('.game-results').css('display', 'block');
+  });
 }
 
 grid.hideResults = function() {
-  $('.game-results').addClass('game-results--hidden');
+  $('.game-results').fadeOut('slow', function() {
+    // $('game-results').css('display', 'none');
+  });
 }
 
 grid.playerGuessToArray = function () {

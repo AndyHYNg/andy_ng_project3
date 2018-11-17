@@ -204,14 +204,14 @@ header {
 
 .correct-tile {
   background: #0d5c63;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat; }
-  .correct-tile--pug {
-    background: url("../../assets/pug.png"); }
 
 .game-results {
   text-align: center;
   width: 50%;
+  height: 25vh;
   background: white;
   position: absolute;
   z-index: 10;
@@ -219,9 +219,7 @@ header {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%); }
-
-.game-results--hidden {
+  transform: translate(-50%, -50%);
   display: none; }
 
 footer {
