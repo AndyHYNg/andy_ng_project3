@@ -27,12 +27,13 @@ header {
 }
 
 .grid-container {
-    width: 65%; //adjust this for mq
+    width: 40vw;
+    height: 40vw;
+    max-height: 100%;
     margin: 0 auto;
     grid-area: game;
     display: grid;
-    grid-template-columns: repeat(4, calc(100%/4));
-    justify-content: center;
+    grid-template-columns: repeat(4, calc(100% / 4));
 }
 
 .tile {

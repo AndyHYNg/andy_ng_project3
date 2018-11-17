@@ -22,14 +22,14 @@
     -ms-flex-direction: column;
     flex-direction: column; }
   .game-options-labels {
-    background-color: #41521f; }
+    background-color: #0d5c63; }
   .game-options-radio {
     position: absolute;
     opacity: 0; }
   .game-options-radio:focus + label {
-    outline: #41521f auto 3px; }
+    outline: #0d5c63 auto 3px; }
   .game-options-radio:checked + label {
-    background-color: #d0b17a; }
+    background-color: #44a1a0; }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }
@@ -166,7 +166,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box; }
 
 body {
-  background: #d0b17a;
+  background: #44a1a0;
   margin: 0 10%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -177,7 +177,7 @@ header {
   grid-area: header; }
 
 .game-menu {
-  background-color: #a89f68;
+  background-color: #247b7b;
   grid-area: menu;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -187,20 +187,19 @@ header {
   justify-content: space-between; }
 
 .grid-container {
-  width: 65%;
+  width: 40vw;
+  height: 40vw;
+  max-height: 100%;
   margin: 0 auto;
   grid-area: game;
   display: grid;
-  grid-template-columns: repeat(4, calc(100%/4));
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center; }
+  grid-template-columns: repeat(4, calc(100% / 4)); }
 
 .tile {
   border: 1px solid black; }
 
 .correct-tile {
-  background: #41521f;
+  background: #0d5c63;
   background-position: center;
   background-repeat: no-repeat; }
   .correct-tile--pug {
