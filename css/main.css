@@ -1,9 +1,37 @@
 .header__h1 {
-  text-align: center; }
+  text-transform: uppercase;
+  font-family: 'Muli', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  font-size: 5rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  line-height: 5rem;
+  color: #FFFFFA; }
+  .header__h1::before {
+    content: '{ '; }
+  .header__h1::after {
+    content: ' }'; }
 
 .game-options {
+  font-family: 'Muli', sans-serif;
+  font-size: 2rem;
   text-align: center;
   grid-area: options; }
+  .game-options-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 4rem;
+    line-height: 4rem;
+    color: #FFFFFA; }
+    .game-options-title::before {
+      content: '{ '; }
+    .game-options-title::after {
+      content: ' }'; }
+  .game-options-info {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 10px; }
   .game-options__section {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -224,3 +252,6 @@ header {
 
 footer {
   grid-area: footer; }
+
+html {
+  font-size: 62.5%; }

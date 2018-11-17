@@ -1,6 +1,30 @@
 .game-options {
+    font-family: 'Muli', sans-serif;
+    font-size: 2rem;
     text-align: center;
     grid-area: options;
+
+    &-title {
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 4rem;
+        line-height: 4rem;
+        color: $font-color;
+
+        &::before {
+            content: '{ ';
+        }
+
+        &::after {
+            content: ' }';
+        }
+    }
+
+    &-info {
+        text-align: left;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
 
     &__section {
         display: flex;
