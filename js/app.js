@@ -4,25 +4,25 @@
 const grid = {};
 grid.rows = 4;
 grid.answerGrid = [];
-grid.playerGrid = [];
 grid.tileClassArray = [];
+grid.playerGrid = [];
 // gets all stylesheet properties
 grid.stylesheetRules = (document.styleSheets[0]).cssRules;
 
 const timer = {};
 timer.initialTimer = 0;
-timer.peekTimer = 0;
-timer.countdown = 0;
+timer.peekTimer = 10;
+timer.countdown = 15;
 timer.playerTimer = 0;
 
 grid.init = function() {
   grid.difficultyCheck();
-  grid.checkStart();
+  grid.startGame();
 }
 
-grid.checkStart = function() {
+grid.startGame = function() {
   // Starts the game as soon as 'Start!' button is pushed
-  $("form").on('submit', function(event){
+  $("form").on('submit', function(event) {
     event.preventDefault();
 
     // If the game still running, reset all necessary functions to prevent errors/bugs
@@ -33,64 +33,64 @@ grid.checkStart = function() {
     grid.fillGrid(grid.answerGrid);
 
     // Gives the player 10 seconds to look at the answer grid (peek timer)
-    timer.peekTimer = 10;
-    timer.initialTimer = setInterval(function () {
-
-      // As soon as the peek timer runs out...
-      if (timer.peekTimer < 0) {
-
-        // Stops the timer from counting down to negative values, wipe out the grid, and allow the player the interact the grid and toggle the tiles they need to replicate the answer grid
-        clearInterval(timer.initialTimer);
-        grid.clearGrid();
-        grid.playerFillGrid();
-
-        // Gives the player a countdown timer to play the game
-        timer.countdown = 15;
-        timer.playerTimer = setInterval(function () {
-
-          // During any point in the game after the peek timer, player can force the game to check his/her answer and end the game via 'Check!' button
-          grid.forceCheck();
-
-          // As soon as the countdown timer runs out...
-          if (timer.countdown < 0) {
-
-            // Stops the timer from counting down to negative values, disables the interaction of toggling the grid tiles...
-            clearInterval(timer.playerTimer);
-            grid.disablePlayerFillGrid();
-
-            // ...Checks the results of the player's grid in relation to the answer grid and output the results (accuracy percentage)
-            grid.playerGuessToArray();
-            console.log(grid.accuracyCheck(grid.playerGrid, grid.answerGrid));
-            grid.displayResults();
-          }
-
-          // Adds an extra '0' in the displayed timer when the timer hits single digits
-          else if (timer.countdown < 10) {
-            $(".timer").html("0:0" + timer.countdown);
-            console.log(timer.countdown);
-          }
-
-          else {
-            $(".timer").html("0:" + timer.countdown);
-            console.log(timer.countdown);
-          }
-
-          timer.countdown--;
-        }, 1000);
-      }
-
-      // Adds an extra '0' in the displayed timer when the timer hits single digits
-      else if (timer.peekTimer < 10) {
-        $(".timer").html("0:0" + timer.peekTimer);
-        console.log(timer.peekTimer);
-      }
-      else {
-        $(".timer").html("0:" + timer.peekTimer);
-        console.log(timer.peekTimer);
-      }
-      timer.peekTimer--;
-    }, 1000)
+    timer.initialTimer = setInterval(grid.peekPhase, 1000)
   });
+}
+
+grid.peekPhase = function () {
+  // As soon as the peek timer runs out...
+  if (timer.peekTimer < 0) {
+
+    // Stops the timer from counting down to negative values, wipe out the grid, and allow the player the interact the grid and toggle the tiles they need to replicate the answer grid
+    clearInterval(timer.initialTimer);
+    grid.clearGrid();
+    grid.playerFillGrid();
+
+    // Gives the player a countdown timer to play the game
+    timer.playerTimer = setInterval(grid.playerPhase, 1000);
+  }
+
+  // Adds an extra '0' in the displayed timer when the timer hits single digits
+  else if (timer.peekTimer < 10) {
+    $(".timer").html("0:0" + timer.peekTimer);
+    console.log(timer.peekTimer);
+  }
+  else {
+    $(".timer").html("0:" + timer.peekTimer);
+    console.log(timer.peekTimer);
+  }
+  timer.peekTimer--;
+}
+
+grid.playerPhase = function () {
+  // During any point in the game after the peek timer, player can force the game to check his/her answer and end the game via 'Check!' button
+  grid.forceCheck();
+
+  // As soon as the countdown timer runs out...
+  if (timer.countdown < 0) {
+
+    // Stops the timer from counting down to negative values, disables the interaction of toggling the grid tiles...
+    clearInterval(timer.playerTimer);
+    grid.disablePlayerFillGrid();
+
+    // ...Checks the results of the player's grid in relation to the answer grid and output the results (accuracy percentage)
+    grid.playerGuessToArray();
+    console.log(grid.accuracyCheck(grid.playerGrid, grid.answerGrid));
+    grid.displayResults();
+  }
+
+  // Adds an extra '0' in the displayed timer when the timer hits single digits
+  else if (timer.countdown < 10) {
+    $(".timer").html("0:0" + timer.countdown);
+    console.log(timer.countdown);
+  }
+
+  else {
+    $(".timer").html("0:" + timer.countdown);
+    console.log(timer.countdown);
+  }
+
+  timer.countdown--;
 }
 
 grid.difficultyCheck = function() {
