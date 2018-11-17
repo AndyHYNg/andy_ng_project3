@@ -166,6 +166,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box; }
 
 body {
+  max-height: 1280px;
   background: #44a1a0;
   margin: 0 10%;
   display: grid;
@@ -187,9 +188,10 @@ header {
   justify-content: space-between; }
 
 .grid-container {
+  max-width: 512px;
+  max-height: 512px;
   width: 40vw;
   height: 40vw;
-  max-height: 100%;
   margin: 0 auto;
   grid-area: game;
   display: grid;

@@ -5,6 +5,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 body {
+    max-height: 1280px;
     background: $primary-color;
     margin: 0 10%;
     display: grid;
@@ -27,9 +28,10 @@ header {
 }
 
 .grid-container {
+    max-width: 512px;
+    max-height: 512px;
     width: 40vw;
     height: 40vw;
-    max-height: 100%;
     margin: 0 auto;
     grid-area: game;
     display: grid;
