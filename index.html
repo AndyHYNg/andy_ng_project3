@@ -16,9 +16,9 @@
             </div>    
         </header>
         <div class="game-options">
-            <h2 class="game-options-title">Options</h2>
             <p class="game-options-info">Test your memory skills!</p>
             <p class="game-options-info">You will be given 10 seconds to look at the pattern and 15 seconds to re-create the same pattern!</p>
+            <h2 class="game-options-title">Options</h2>
             <form class="game-options__container">
                 <section class="game-options__section" id="level">
                     <input class="game-options-radio" id="easy" type="radio" name="level" value="easy">
@@ -66,8 +66,12 @@
             <div class="tile tile-16"></div>
         </div>
         <div class="game-results">
-            <span class="game-results__accuracy"></span>
-            <button>test</button>
+            <div class="game-results-wrapper">
+                <h2 class="game-results-heading">Results!</h2>
+                <p class="game-results-text">Accuracy</p>
+                <span class="game-results__accuracy"></span>
+                <button class="game-results-button">Play again</button>
+            </div>
         </div>
         <footer class="footer">
             <p class="footer-text">&copy; Andy Ng 2018</p>

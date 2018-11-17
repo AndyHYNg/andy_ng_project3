@@ -7,7 +7,7 @@ grid.answerGrid = [];
 grid.tileClassArray = [];
 grid.playerGrid = [];
 // gets all stylesheet properties
-grid.stylesheetRules = (document.styleSheets[0]).cssRules;
+// grid.stylesheetRules = (document.styleSheets[0]).cssRules;
 
 const timer = {};
 timer.initialTimer = 0;
@@ -189,6 +189,9 @@ grid.displayResults = function() {
   $('.game-results__accuracy').html(`Accuracy: ${grid.accuracyCheck(grid.playerGrid, grid.answerGrid)}%`);
   $('.game-results').fadeIn('slow', function () {
     $('.game-results').css('display', 'block');
+  });
+  $('.game-results-button').on('click', function() {
+    grid.hideResults();
   });
 }
 

@@ -1,0 +1,31 @@
+.game-results {
+    font-family: $main-font;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(13, 92, 99, 0.5), rgba(13, 92, 99, 0.5));
+    display: none;
+
+    &-wrapper {
+        border: 10px solid $font-color;
+        background: $accent-color;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        transform: translate(-50%, -50%);
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-heading {
+        font-size: 3rem;
+        color: $font-color;
+
+    }
+}
