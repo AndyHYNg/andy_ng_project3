@@ -7,65 +7,67 @@
     <title>Forgrid me not!</title>
     <link rel='stylesheet' href='css/main.css'>
 </head>
-<body>
-    <header class="header">
-        <h1 class="header-h1">Forgrid Me Not!</h1>
-    </header>
-    <div class="game-options">
-        <h2 class="game-options-title">Options</h2>
-        <p>Test your memory skills! You will be given 10 seconds to look at the grid and then try your best to create the same pattern!</p>
-        <form class="game-options__container">
-            <section class="game-options__section" id="level">
-                <input class="game-options-radio" id="easy" type="radio" name="level" value="easy">
-                <label class="game-options-labels" for="easy">Easy</label>
-                <input class="game-options-radio" id="medium" type="radio" name="level" value="medium" checked="">
-                <label class="game-options-labels" for="medium">Medium</label>
-                <input class="game-options-radio" id="hard" type="radio" name="level" value="hard">
-                <label class="game-options-labels" for="hard">Hard</label>
-                <input class="game-options-radio" id="wizard" type="radio" name="level" value="wizard">
-                <label class="game-options-labels" for="wizard">Wizard</label>
-            </section>
-            <section class="game-options__section" id="tile">
-                <input class="game-options-radio" id="default" type="radio" name="tile" value="default">
-                <label class="game-options-labels" for="default">Default</label>
-                <input class="game-options-radio" id="pug" type="radio" name="tile" value="pug">
-                <label class="game-options-labels" for="pug">Pug</label>
-                <input class="game-options-radio" id="prepros" type="radio" name="tile" value="prepros">
-                <label class="game-options-labels" for="prepros">Prepros</label>
-                <input class="game-options-radio" id="salad" type="radio" name="tile" value="salad">
-                <label class="game-options-labels" for="salad">Salad</label>
-            </section>
-            <input type="submit" value="Start!">
-        </form>
-        <div class="game-menu">
-            <p class="timer">0:00</p>
-            <button class="game-menu__check-button">Check!</button>
+<body class="game">
+    <div class="game-wrapper">
+        <header class="header">
+            <h1 class="header-h1">Forgrid Me Not!</h1>
+        </header>
+        <div class="game-options">
+            <h2 class="game-options-title">Options</h2>
+            <p>Test your memory skills! You will be given 10 seconds to look at the grid and then try your best to create the same pattern!</p>
+            <form class="game-options__container">
+                <section class="game-options__section" id="level">
+                    <input class="game-options-radio" id="easy" type="radio" name="level" value="easy">
+                    <label class="game-options-labels" for="easy">Easy</label>
+                    <input class="game-options-radio" id="medium" type="radio" name="level" value="medium" checked="">
+                    <label class="game-options-labels" for="medium">Medium</label>
+                    <input class="game-options-radio" id="hard" type="radio" name="level" value="hard">
+                    <label class="game-options-labels" for="hard">Hard</label>
+                    <input class="game-options-radio" id="wizard" type="radio" name="level" value="wizard">
+                    <label class="game-options-labels" for="wizard">Wizard</label>
+                </section>
+                <section class="game-options__section" id="tile">
+                    <input class="game-options-radio" id="default" type="radio" name="tile" value="default">
+                    <label class="game-options-labels" for="default">Default</label>
+                    <input class="game-options-radio" id="pug" type="radio" name="tile" value="pug">
+                    <label class="game-options-labels" for="pug">Pug</label>
+                    <input class="game-options-radio" id="prepros" type="radio" name="tile" value="prepros">
+                    <label class="game-options-labels" for="prepros">Prepros</label>
+                    <input class="game-options-radio" id="salad" type="radio" name="tile" value="salad">
+                    <label class="game-options-labels" for="salad">Salad</label>
+                </section>
+                <input type="submit" value="Start!">
+            </form>
+            <div class="game-menu">
+                <p class="timer">0:00</p>
+                <button class="game-menu__check-button">Check!</button>
+            </div>
+        </div>  
+        <div class="grid-container">
+            <div class="tile tile-1"></div>
+            <div class="tile tile-2"></div>
+            <div class="tile tile-3"></div>
+            <div class="tile tile-4"></div>
+            <div class="tile tile-5"></div>
+            <div class="tile tile-6"></div>
+            <div class="tile tile-7"></div>
+            <div class="tile tile-8"></div>
+            <div class="tile tile-9"></div>
+            <div class="tile tile-10"></div>
+            <div class="tile tile-11"></div>
+            <div class="tile tile-12"></div>
+            <div class="tile tile-13"></div>
+            <div class="tile tile-14"></div>
+            <div class="tile tile-15"></div>
+            <div class="tile tile-16"></div>
         </div>
-    </div>  
-    <div class="grid-container">
-        <div class="tile tile-1"></div>
-        <div class="tile tile-2"></div>
-        <div class="tile tile-3"></div>
-        <div class="tile tile-4"></div>
-        <div class="tile tile-5"></div>
-        <div class="tile tile-6"></div>
-        <div class="tile tile-7"></div>
-        <div class="tile tile-8"></div>
-        <div class="tile tile-9"></div>
-        <div class="tile tile-10"></div>
-        <div class="tile tile-11"></div>
-        <div class="tile tile-12"></div>
-        <div class="tile tile-13"></div>
-        <div class="tile tile-14"></div>
-        <div class="tile tile-15"></div>
-        <div class="tile tile-16"></div>
+        <div class="game-results game-results--hidden">
+            <span class="game-results__accuracy"></span>
+        </div>
+        <footer class="footer">
+            <p class="footer-text">&copy; Andy Ng 2018</p>
+        </footer>
     </div>
-    <div class="game-results game-results--hidden">
-        <span class="game-results__accuracy"></span>
-    </div>
-    <footer class="footer">
-        <p class="footer-text">&copy; Andy Ng 2018</p>
-    </footer>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script src="js/app.js"></script>

@@ -45,7 +45,7 @@ grid.checkStart = function() {
         grid.playerFillGrid();
 
         // Gives the player a countdown timer to play the game
-        timer.countdown = 10;
+        timer.countdown = 15;
         timer.playerTimer = setInterval(function () {
 
           // During any point in the game after the peek timer, player can force the game to check his/her answer and end the game via 'Check!' button

@@ -4,13 +4,16 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-body {
-    max-height: 1280px;
+.game {
     background: $primary-color;
+}
+
+.game-wrapper {
+    max-height: 1280px;
     margin: 0 10%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 10vh 85vh 5vh;
+    grid-template-rows: 15vh 80vh 5vh;
     grid-template-areas: "header header header header"
                          "options game game game"
                          "footer footer footer footer";
