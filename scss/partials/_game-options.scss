@@ -9,8 +9,8 @@
     &-title {
         margin-top: 0;
         margin-bottom: 20px;
-        font-size: 4rem;
-        line-height: 4rem;
+        font-size: 3rem;
+        line-height: 3rem;
         color: $font-color;
 
         &::before {
@@ -62,11 +62,15 @@
     }
 
     &-start {
+        text-transform: uppercase;
+        width: 75%;
         font-size: 2rem;
         font-family: $main-font;
         color: $font-color;
         border: 1px solid $font-color;
-        margin-right: 10px;
+        margin: 0 auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
         background-color: $accent-color;
         transition: all 0.2s ease-in-out;
 

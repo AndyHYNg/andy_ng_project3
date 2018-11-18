@@ -8,7 +8,7 @@
 
     &-wrapper {
         border: 10px solid $font-color;
-        background: $accent-color;
+        background: $secondary-color;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -25,6 +25,17 @@
 
     &-heading {
         font-size: 3rem;
+        font-family: $main-font;
         color: $font-color;
+    }
+
+    &__accuracy {
+        font-family: $main-font;
+        font-size: 2rem;
+        color: $font-color;
+    }
+
+    &-button {
+        
     }
 }

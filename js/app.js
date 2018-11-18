@@ -192,6 +192,7 @@ grid.disableForceCheck = function() {
 }
 
 grid.displayResults = function() {
+  grid.disablePlayerFillGrid();
   $('.game-results__accuracy').html(`Accuracy: ${grid.accuracyCheck(grid.playerGrid, grid.answerGrid)}%`);
   $('.game-results').fadeIn('slow', function () {
     $('.game-results').css('display', 'block');
