@@ -11,7 +11,7 @@
         line-height: 2rem;
         font-size: 2rem;
         font-family: $main-font;
-        margin: 0;
+        margin: 0 0 0 10px;
         text-transform: capitalize;
     }
 
@@ -24,7 +24,20 @@
     &__check-button {
         font-size: 2rem;
         font-family: $main-font;
-        border: none;
+        color: $font-color;
+        border: 1px solid $font-color;
         margin-right: 10px;
+        background-color: $accent-color;
+        transition: all 0.2s ease-in-out;
+
+        &:focus {
+            outline: $highlight-color auto 3px;
+        }
+
+        &:hover {
+            color: $accent-color;
+            border-color: $accent-color;
+            background-color: $font-color;
+        }
     }
 }

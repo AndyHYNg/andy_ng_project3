@@ -1,4 +1,6 @@
 .game-options {
+    padding: 15px;
+    background-color: $secondary-color;
     font-family: 'Muli', sans-serif;
     font-size: 2rem;
     text-align: center;
@@ -39,8 +41,11 @@
     }
 
     &-labels {
-        background-color: $accent-color;
-        // margin: 5px 100px;
+        width: 75%;
+        color: $font-color;
+        border: 3px solid $font-color;
+        background-color: $primary-color;
+        margin: 0 auto 10px;
     }
 
     &-radio {
@@ -49,10 +54,30 @@
     }
 
     &-radio:focus + label {
-        outline: $accent-color auto 3px;
+        outline: $highlight-color auto 3px;
     }
 
     &-radio:checked + label {
-        background-color: $primary-color;
+        background-color: $highlight-color;
+    }
+
+    &-start {
+        font-size: 2rem;
+        font-family: $main-font;
+        color: $font-color;
+        border: 1px solid $font-color;
+        margin-right: 10px;
+        background-color: $accent-color;
+        transition: all 0.2s ease-in-out;
+
+        &:focus {
+            outline: $highlight-color auto 3px;
+        }
+
+        &:hover {
+            color: $accent-color;
+            border-color: $accent-color;
+            background-color: $font-color;
+        }
     }
 }

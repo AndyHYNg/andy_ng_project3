@@ -148,6 +148,8 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     content: ' }'; }
 
 .game-options {
+  padding: 15px;
+  background-color: #247b7b;
   font-family: 'Muli', sans-serif;
   font-size: 2rem;
   text-align: center;
@@ -185,14 +187,34 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     -ms-flex-direction: column;
     flex-direction: column; }
   .game-options-labels {
-    background-color: #0d5c63; }
+    width: 75%;
+    color: #FFFFFA;
+    border: 3px solid #FFFFFA;
+    background-color: #44a1a0;
+    margin: 0 auto 10px; }
   .game-options-radio {
     position: absolute;
     opacity: 0; }
   .game-options-radio:focus + label {
-    outline: #0d5c63 auto 3px; }
+    outline: #1B3341 auto 3px; }
   .game-options-radio:checked + label {
-    background-color: #44a1a0; }
+    background-color: #1B3341; }
+  .game-options-start {
+    font-size: 2rem;
+    font-family: "Muli", sans-serif;
+    color: #FFFFFA;
+    border: 1px solid #FFFFFA;
+    margin-right: 10px;
+    background-color: #0d5c63;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    .game-options-start:focus {
+      outline: #1B3341 auto 3px; }
+    .game-options-start:hover {
+      color: #0d5c63;
+      border-color: #0d5c63;
+      background-color: #FFFFFA; }
 
 .game {
   background: #44a1a0; }
@@ -224,7 +246,7 @@ header {
   border: 5px solid #FFFFFA; }
 
 .correct-tile {
-  background: #0d5c63;
+  background: #1B3341;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat; }
@@ -304,7 +326,7 @@ footer {
     line-height: 2rem;
     font-size: 2rem;
     font-family: "Muli", sans-serif;
-    margin: 0;
+    margin: 0 0 0 10px;
     text-transform: capitalize; }
   .game-menu-timer {
     font-size: 4rem;
@@ -313,8 +335,19 @@ footer {
   .game-menu__check-button {
     font-size: 2rem;
     font-family: "Muli", sans-serif;
-    border: none;
-    margin-right: 10px; }
+    color: #FFFFFA;
+    border: 1px solid #FFFFFA;
+    margin-right: 10px;
+    background-color: #0d5c63;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    .game-menu__check-button:focus {
+      outline: #1B3341 auto 3px; }
+    .game-menu__check-button:hover {
+      color: #0d5c63;
+      border-color: #0d5c63;
+      background-color: #FFFFFA; }
 
 html {
   font-size: 62.5%; }
