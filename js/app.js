@@ -194,6 +194,7 @@ grid.disableForceCheck = function() {
 grid.displayResults = function() {
   grid.disablePlayerFillGrid();
   $('.game-results__accuracy').html(`Accuracy: ${grid.accuracyCheck(grid.playerGrid, grid.answerGrid)}%`);
+  $('.game').css('overflow', 'hidden');
   $('.game-results').fadeIn('slow', function () {
     $('.game-results').css('display', 'block');
   });
@@ -203,6 +204,7 @@ grid.displayResults = function() {
 }
 
 grid.hideResults = function() {
+  $('.game').css('overflow', 'auto');
   $('.game-results').fadeOut('slow', function() {
     // $('game-results').css('display', 'none');
   });

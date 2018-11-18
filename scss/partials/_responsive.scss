@@ -26,6 +26,7 @@
 @media (max-width: 999px) {
     
     .game-wrapper {
+        margin: 0 5%;
         grid-template-areas: 
         "header header header header header header header header"
         "options options options options options options options options"
@@ -36,21 +37,122 @@
 
     .game-options {
         flex-direction: row;
+        margin-bottom: 20px;
+
+        &-title {
+            &::before {
+                content: "";
+            }
+
+            &::after {
+                content: ":";
+            }
+        }
 
         &-description {
             width: 25%;
+            margin-right: 10px;
         }
 
         &__container {
             width: 75%;
-        }
-
-        &__container {
             flex-direction: row;
+            align-items: center;
         }
 
         &__section {
-            width: 50%;
+            width: calc(100% / 3);
+            margin-bottom: 0;
+            align-items: center;
+        }
+
+        &-labels {
+            width: 85%;
+        }
+        
+        &-start {
+            width: calc(100% / 3);
+            height: 50%;
+            margin: auto auto;
+        }
+    }
+    
+    .game-menu {
+        margin-bottom: 20px;
+    }
+    .grid-container {
+        height: 100vw;
+        width: 100vw;
+    }
+}
+
+@media (max-width: 760px) {
+    .game-options {
+        flex-direction: column;
+        
+        &-description {
+            width: 100%;
+            margin-right: 0;
+        }
+
+        &-info {
+            text-align: center;
+        }
+
+        &-title::before {
+            content: "{ ";
+        }
+
+        &-title::after {
+            content: " }";
+        }
+
+        &__container {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 634px) {
+    .game-menu {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        width: 85vw;
+        height: 85vw;
+    }
+
+    .tile {
+        border-width: 3px;
+    }
+}
+
+@media (max-width: 500px) {
+    .game-options {
+
+        &__container {
+            flex-direction: column;
+        }
+
+        &__section {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+
+    .game-menu {
+        flex-direction: column;
+        padding: 15px;
+
+        &-difficulty {
+            margin-left: 0;
+        }
+
+        &__check-button {
+            margin-right: 0;
         }
     }
 }
