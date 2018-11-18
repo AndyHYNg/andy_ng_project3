@@ -1,0 +1,30 @@
+.game-menu {
+    margin: 0 auto;
+    width: 75%;
+    background-color: $secondary-color;
+    grid-area: timer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-difficulty {
+        line-height: 2rem;
+        font-size: 2rem;
+        font-family: $main-font;
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    &-timer {
+        font-size: 4rem;
+        font-family: $main-font;
+        margin: 0;
+    }
+
+    &__check-button {
+        font-size: 2rem;
+        font-family: $main-font;
+        border: none;
+        margin-right: 10px;
+    }
+}

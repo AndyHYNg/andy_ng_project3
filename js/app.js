@@ -54,11 +54,11 @@ grid.peekPhase = function () {
 
   // Adds an extra '0' in the displayed timer when the timer hits single digits
   else if (timer.peekTimer < 10) {
-    $(".timer").html("0:0" + timer.peekTimer);
+    $(".game-menu-timer").html("0:0" + timer.peekTimer);
     console.log(timer.peekTimer);
   }
   else {
-    $(".timer").html("0:" + timer.peekTimer);
+    $(".game-menu-timer").html("0:" + timer.peekTimer);
     console.log(timer.peekTimer);
   }
   timer.peekTimer--;
@@ -83,12 +83,12 @@ grid.playerPhase = function () {
 
   // Adds an extra '0' in the displayed timer when the timer hits single digits
   else if (timer.countdown < 10) {
-    $(".timer").html("0:0" + timer.countdown);
+    $(".game-menu-timer").html("0:0" + timer.countdown);
     console.log(timer.countdown);
   }
 
   else {
-    $(".timer").html("0:" + timer.countdown);
+    $(".game-menu-timer").html("0:" + timer.countdown);
     console.log(timer.countdown);
   }
 
@@ -102,7 +102,7 @@ grid.difficultyCheck = function() {
     // grid.hideResults();
     let difficulty = $('input[name=level]:checked').val();
     let tileStyle = $('input[name=tile]:checked').val();
-    $('game-menu-difficulty__display').html(difficulty);
+    $('.game-menu-difficulty__display').html(difficulty);
     if (difficulty === "easy") {
       grid.changeGrid(3);
     }
@@ -160,6 +160,7 @@ grid.reset = function() {
   grid.clearGrid();
   grid.hideResults();
   grid.disablePlayerFillGrid();
+  grid.disableForceCheck();
   clearInterval(timer.initialTimer);
   clearInterval(timer.playerTimer);
 }
@@ -184,6 +185,10 @@ grid.playerFillGrid = function () {
 
 grid.disablePlayerFillGrid = function () {
   $('.tile').off('click');
+}
+
+grid.disableForceCheck = function() {
+  $('.game-menu__check-button').off('click');
 }
 
 grid.displayResults = function() {

@@ -1,10 +1,12 @@
-@import "partials/variables";
-@import "partials/mixin";
-@import "partials/header";
-@import "partials/game-options";
-@import "partials/grid";
-@import "partials/responsive";
+@import 'partials/setup';
+@import 'partials/variables';
+@import 'partials/mixin';
+@import 'partials/header';
+@import 'partials/game-options';
+@import 'partials/grid';
 @import 'partials/game-results';
+@import 'partials/game-timer';
+@import 'partials/responsive';
 
 html {
     font-size: 62.5%;
