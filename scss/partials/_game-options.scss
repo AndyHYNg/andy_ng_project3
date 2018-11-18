@@ -5,6 +5,8 @@
     font-size: 2rem;
     text-align: center;
     grid-area: options;
+    display: flex;
+    flex-direction: column;
 
     &-title {
         margin-top: 0;

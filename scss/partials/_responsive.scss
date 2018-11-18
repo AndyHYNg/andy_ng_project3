@@ -1,0 +1,56 @@
+@media (max-width: 1255px) {
+    .game-wrapper {
+    grid-template-areas: "header header header header header header header header"
+                         "options options options timer timer timer timer timer"
+                         "options options options . . . . ."
+                         "options options options game game game game game"
+                         "footer footer footer footer footer footer footer footer";
+    }
+
+    .game-menu {
+        width: 80%;
+    }
+}
+
+@media (max-width: 1150px) {
+    .grid-container {
+        width: 45vw;
+        height: 45vw;
+    }
+    
+    .game-menu {
+        width: 90%;
+    }
+}
+
+@media (max-width: 999px) {
+    
+    .game-wrapper {
+        grid-template-areas: 
+        "header header header header header header header header"
+        "options options options options options options options options"
+        "timer timer timer timer timer timer timer timer"
+        "game game game game game game game game"
+        "footer footer footer footer footer footer footer footer";
+    }
+
+    .game-options {
+        flex-direction: row;
+
+        &-description {
+            width: 25%;
+        }
+
+        &__container {
+            width: 75%;
+        }
+
+        &__container {
+            flex-direction: row;
+        }
+
+        &__section {
+            width: 50%;
+        }
+    }
+}

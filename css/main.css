@@ -153,7 +153,14 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   font-family: 'Muli', sans-serif;
   font-size: 2rem;
   text-align: center;
-  grid-area: options; }
+  grid-area: options;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; }
   .game-options-title {
     margin-top: 0;
     margin-bottom: 20px;
@@ -224,12 +231,12 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   background: #44a1a0; }
 
 .game-wrapper {
-  max-height: 1280px;
+  min-height: 100%;
+  max-width: 1280px;
   margin: 0 10%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 15vh 5vh 1vh 75vh 4vh;
-  grid-template-areas: "header header header header" "options timer timer timer" "options . . ." "options game game game" "footer footer footer footer"; }
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-areas: "header header header header header header header header" "options options timer timer timer timer timer timer" "options options . . . . . ." "options options game game game game game game" "footer footer footer footer footer footer footer footer"; }
 
 header {
   grid-area: header; }
@@ -360,9 +367,42 @@ footer {
 
 .footer-text {
   font-family: "Muli", sans-serif;
-  margin: 0;
   font-size: 2rem;
-  text-align: right; }
+  text-align: right;
+  margin: 10px 0 0 0; }
+
+@media (max-width: 1255px) {
+  .game-wrapper {
+    grid-template-areas: "header header header header header header header header" "options options options timer timer timer timer timer" "options options options . . . . ." "options options options game game game game game" "footer footer footer footer footer footer footer footer"; }
+  .game-menu {
+    width: 80%; } }
+
+@media (max-width: 1150px) {
+  .grid-container {
+    width: 45vw;
+    height: 45vw; }
+  .game-menu {
+    width: 90%; } }
+
+@media (max-width: 999px) {
+  .game-wrapper {
+    grid-template-areas: "header header header header header header header header" "options options options options options options options options" "timer timer timer timer timer timer timer timer" "game game game game game game game game" "footer footer footer footer footer footer footer footer"; }
+  .game-options {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row; }
+    .game-options-description {
+      width: 25%; }
+    .game-options__container {
+      width: 75%; }
+    .game-options__container {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row; }
+    .game-options__section {
+      width: 50%; } }
 
 html {
   font-size: 62.5%; }
