@@ -102,6 +102,7 @@ grid.difficultyCheck = function() {
     // grid.hideResults();
     let difficulty = $('input[name=level]:checked').val();
     let tileStyle = $('input[name=tile]:checked').val();
+    $('game-menu-difficulty__display').html(difficulty);
     if (difficulty === "easy") {
       grid.changeGrid(3);
     }

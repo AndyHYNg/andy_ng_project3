@@ -202,15 +202,17 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   margin: 0 10%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 15vh 80vh 5vh;
-  grid-template-areas: "header header header header" "options game game game" "footer footer footer footer"; }
+  grid-template-rows: 15vh 5vh 2vh 75vh 5vh;
+  grid-template-areas: "header header header header" "options timer timer timer" "options . . ." "options game game game" "footer footer footer footer"; }
 
 header {
   grid-area: header; }
 
 .game-menu {
+  margin: 0 auto;
+  width: 75%;
   background-color: #247b7b;
-  grid-area: menu;
+  grid-area: timer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -218,13 +220,15 @@ header {
   -ms-flex-pack: justify;
   justify-content: space-between; }
 
+.game-grid-wrapper {
+  grid-area: game; }
+
 .grid-container {
   max-width: 512px;
   max-height: 512px;
   width: 40vw;
   height: 40vw;
   margin: 0 auto;
-  grid-area: game;
   display: grid;
   grid-template-columns: repeat(4, calc(100% / 4)); }
 
