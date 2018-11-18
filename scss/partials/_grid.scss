@@ -24,6 +24,7 @@ header {
 }
 
 .grid-container {
+    background-color: $accent-color;
     max-width: 512px;
     max-height: 512px;
     width: 40vw;
@@ -35,6 +36,7 @@ header {
 
 .tile {
     border: 5px solid $font-color;
+    cursor: pointer;
 }
 
 .correct-tile {

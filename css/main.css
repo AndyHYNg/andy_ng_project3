@@ -198,7 +198,8 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     color: #FFFFFA;
     border: 3px solid #FFFFFA;
     background-color: #44a1a0;
-    margin: 0 auto 10px; }
+    margin: 0 auto 10px;
+    cursor: pointer; }
   .game-options-radio {
     position: absolute;
     opacity: 0; }
@@ -245,6 +246,7 @@ header {
   grid-area: game; }
 
 .grid-container {
+  background-color: #0d5c63;
   max-width: 512px;
   max-height: 512px;
   width: 40vw;
@@ -254,7 +256,8 @@ header {
   grid-template-columns: repeat(4, calc(100% / 4)); }
 
 .tile {
-  border: 5px solid #FFFFFA; }
+  border: 5px solid #FFFFFA;
+  cursor: pointer; }
 
 .correct-tile {
   background: #1B3341;
@@ -312,8 +315,7 @@ footer {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    justify-content: center;
-    align-items: center; }
+    padding: 20px; }
   .game-results-heading {
     font-size: 3rem;
     font-family: "Muli", sans-serif;
@@ -322,6 +324,26 @@ footer {
     font-family: "Muli", sans-serif;
     font-size: 2rem;
     color: #FFFFFA; }
+  .game-results-button {
+    text-transform: uppercase;
+    width: 75%;
+    font-size: 2rem;
+    font-family: "Muli", sans-serif;
+    color: #FFFFFA;
+    border: 1px solid #FFFFFA;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #0d5c63;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    .game-results-button:focus {
+      outline: #1B3341 auto 3px; }
+    .game-results-button:hover {
+      color: #0d5c63;
+      border-color: #0d5c63;
+      background-color: #FFFFFA; }
 
 .game-menu {
   margin: 0 auto;
@@ -425,7 +447,9 @@ footer {
     margin-bottom: 20px; }
   .grid-container {
     height: 100vw;
-    width: 100vw; } }
+    width: 100vw; }
+  .game-results-wrapper {
+    width: 75%; } }
 
 @media (max-width: 760px) {
   .game-options {
@@ -450,13 +474,15 @@ footer {
     width: 100%; } }
 
 @media (max-width: 600px) {
+  .game-wrapper {
+    min-width: 320px; }
   .grid-container {
+    min-width: 320px;
+    min-height: 320px;
     width: 85vw;
     height: 85vw; }
   .tile {
-    border-width: 3px; } }
-
-@media (max-width: 500px) {
+    border-width: 3px; }
   .game-options__container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -474,7 +500,9 @@ footer {
     .game-menu-difficulty {
       margin-left: 0; }
     .game-menu__check-button {
-      margin-right: 0; } }
+      margin-right: 0; }
+  .footer-text {
+    text-align: center; } }
 
 html {
   font-size: 62.5%; }

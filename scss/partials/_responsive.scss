@@ -84,6 +84,10 @@
         height: 100vw;
         width: 100vw;
     }
+
+    .game-results-wrapper {
+        width: 75%;
+    }
 }
 
 @media (max-width: 760px) {
@@ -120,7 +124,14 @@
 }
 
 @media (max-width: 600px) {
+
+    .game-wrapper {
+        min-width: 320px;
+    }
+
     .grid-container {
+        min-width: 320px;
+        min-height: 320px;
         width: 85vw;
         height: 85vw;
     }
@@ -128,9 +139,7 @@
     .tile {
         border-width: 3px;
     }
-}
 
-@media (max-width: 500px) {
     .game-options {
 
         &__container {
@@ -154,5 +163,9 @@
         &__check-button {
             margin-right: 0;
         }
+    }
+
+    .footer-text {
+        text-align: center;
     }
 }
