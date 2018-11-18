@@ -198,6 +198,8 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     color: #FFFFFA;
     border: 3px solid #FFFFFA;
     background-color: #44a1a0;
+    padding-top: 3px;
+    padding-bottom: 3px;
     margin: 0 auto 10px;
     cursor: pointer; }
   .game-options-radio {
@@ -237,16 +239,22 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   margin: 0 10%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-areas: "header header header header header header header header" "options options timer timer timer timer timer timer" "options options . . . . . ." "options options game game game game game game" "footer footer footer footer footer footer footer footer"; }
+  grid-template-areas: "header header header header header header header header" "options options timer timer timer timer timer timer" "options options game game game game game game" "footer footer footer footer footer footer footer footer"; }
 
 header {
   grid-area: header; }
 
 .game-grid-wrapper {
-  grid-area: game; }
+  grid-area: game;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end; }
 
 .grid-container {
-  background-color: #0d5c63;
+  background-color: #247b7b;
   max-width: 512px;
   max-height: 512px;
   width: 40vw;
@@ -360,12 +368,14 @@ footer {
   -ms-flex-align: center;
   align-items: center; }
   .game-menu-difficulty {
+    color: #FFFFFA;
     line-height: 2rem;
     font-size: 2rem;
     font-family: "Muli", sans-serif;
     margin: 0 0 0 10px;
     text-transform: capitalize; }
   .game-menu-timer {
+    color: #FFFFFA;
     font-size: 4rem;
     font-family: "Muli", sans-serif;
     margin: 0; }
@@ -394,7 +404,7 @@ footer {
 
 @media (max-width: 1255px) {
   .game-wrapper {
-    grid-template-areas: "header header header header header header header header" "options options options timer timer timer timer timer" "options options options . . . . ." "options options options game game game game game" "footer footer footer footer footer footer footer footer"; }
+    grid-template-areas: "header header header header header header header header" "options options options timer timer timer timer timer" "options options options game game game game game" "footer footer footer footer footer footer footer footer"; }
   .game-menu {
     width: 80%; } }
 

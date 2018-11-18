@@ -180,7 +180,8 @@ grid.playerFillGrid = function () {
   // allow the player to toggle the HTML tiles
   $('.tile').on('click', function () {
     $(this).toggleClass("correct-tile");
-  })
+    // $(this).innerHTML(`<img src='../../assets/${}.png`);
+  });
 }
 
 grid.disablePlayerFillGrid = function () {

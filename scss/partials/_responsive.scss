@@ -2,7 +2,6 @@
     .game-wrapper {
     grid-template-areas: "header header header header header header header header"
                          "options options options timer timer timer timer timer"
-                         "options options options . . . . ."
                          "options options options game game game game game"
                          "footer footer footer footer footer footer footer footer";
     }
