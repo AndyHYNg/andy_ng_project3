@@ -9,9 +9,9 @@ grid.tileClassArray = [];
 grid.playerGrid = [];
 grid.tileStyle = "";
 grid.imageObjects = {
-  pug: `<img class='pug' src='../../assets/pug.png' alt='smiling pug dog sitting on floor'>`,
-  salad: `<img class='salad' src='../../assets/salad.png' alt='cartoon image of salad in a bowl'>`,
-  coffee: `<img class='coffee' src='../../assets/coffee.png' alt='cartoon image of coffee in a cup with coffee beans beside it'>`
+  pug: `<img class='pug' src='/assets/pug.png' alt='smiling pug dog sitting on floor'>`,
+  salad: `<img class='salad' src='/assets/salad.png' alt='cartoon image of salad in a bowl'>`,
+  coffee: `<img class='coffee' src='/assets/coffee.png' alt='cartoon image of coffee in a cup with coffee beans beside it'>`
 }
 // gets all stylesheet properties
 // grid.stylesheetRules = (document.styleSheets[0]).cssRules;
