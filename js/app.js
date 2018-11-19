@@ -7,29 +7,25 @@ grid.rows = 4;
 grid.answerGrid = [];
 grid.tileClassArray = [];
 grid.playerGrid = [];
-grid.tileStyle = "";
+grid.tileStyle = '';
+grid.initialTimer = 0;
+grid.peekTimer = 10;
+grid.countdown = 15;
+grid.playerTimer = 0;
 grid.imageObjects = {
   pug: `<img class='pug' src='assets/pug.png' alt='smiling pug dog sitting on floor'>`,
   salad: `<img class='salad' src='assets/salad.png' alt='cartoon image of salad in a bowl'>`,
   coffee: `<img class='coffee' src='assets/coffee.png' alt='cartoon image of coffee in a cup with coffee beans beside it'>`
 }
-// gets all stylesheet properties
-// grid.stylesheetRules = (document.styleSheets[0]).cssRules;
-
-const timer = {};
-timer.initialTimer = 0;
-timer.peekTimer = 10;
-timer.countdown = 15;
-timer.playerTimer = 0;
 
 grid.init = function() {
-  grid.difficultyCheck();
+  grid.optionsCheck();
   grid.startGame();
 }
 
 grid.startGame = function() {
   // Starts the game as soon as 'Start!' button is pushed
-  $("form").on('submit', function(event) {
+  $('form').on('submit', function(event) {
     event.preventDefault();
 
     // If the game still running, reset all necessary functions to prevent errors/bugs
@@ -40,35 +36,33 @@ grid.startGame = function() {
     grid.fillGrid(grid.answerGrid);
 
     // Gives the player 10 seconds to look at the answer grid (peek timer)
-    timer.peekTimer = 10;
-    timer.initialTimer = setInterval(grid.peekPhase, 1000)
+    grid.peekTimer = 10;
+    grid.initialTimer = setInterval(grid.peekPhase, 1000)
   });
 }
 
 grid.peekPhase = function () {
   // As soon as the peek timer runs out...
-  if (timer.peekTimer < 0) {
+  if (grid.peekTimer < 0) {
 
     // Stops the timer from counting down to negative values, wipe out the grid, and allow the player the interact the grid and toggle the tiles they need to replicate the answer grid
-    clearInterval(timer.initialTimer);
+    clearInterval(grid.initialTimer);
     grid.clearGrid();
     grid.playerFillGrid();
 
     // Gives the player a countdown timer to play the game
-    timer.countdown = 15;
-    timer.playerTimer = setInterval(grid.playerPhase, 1000);
+    grid.countdown = 15;
+    grid.playerTimer = setInterval(grid.playerPhase, 1000);
   }
 
   // Adds an extra '0' in the displayed timer when the timer hits single digits
-  else if (timer.peekTimer < 10) {
-    $(".game-menu-timer").html("0:0" + timer.peekTimer);
-    console.log(timer.peekTimer);
+  else if (grid.peekTimer < 10) {
+    $('.game-menu-timer').html('0:0' + grid.peekTimer);
   }
   else {
-    $(".game-menu-timer").html("0:" + timer.peekTimer);
-    console.log(timer.peekTimer);
+    $('.game-menu-timer').html('0:' + grid.peekTimer);
   }
-  timer.peekTimer--;
+  grid.peekTimer--;
 }
 
 grid.playerPhase = function () {
@@ -76,62 +70,52 @@ grid.playerPhase = function () {
   grid.forceCheck();
 
   // As soon as the countdown timer runs out...
-  if (timer.countdown < 0) {
+  if (grid.countdown < 0) {
 
     // Stops the timer from counting down to negative values, disables the interaction of toggling the grid tiles...
-    clearInterval(timer.playerTimer);
+    clearInterval(grid.playerTimer);
     grid.disablePlayerFillGrid();
 
     // ...Checks the results of the player's grid in relation to the answer grid and output the results (accuracy percentage)
     grid.playerGuessToArray();
-    console.log(grid.accuracyCheck(grid.playerGrid, grid.answerGrid));
     grid.displayResults();
   }
 
   // Adds an extra '0' in the displayed timer when the timer hits single digits
-  else if (timer.countdown < 10) {
-    $(".game-menu-timer").html("0:0" + timer.countdown);
-    console.log(timer.countdown);
+  else if (grid.countdown < 10) {
+    $('.game-menu-timer').html('0:0' + grid.countdown);
   }
 
   else {
-    $(".game-menu-timer").html("0:" + timer.countdown);
-    console.log(timer.countdown);
+    $('.game-menu-timer').html('0:' + grid.countdown);
   }
 
-  timer.countdown--;
+  grid.countdown--;
 }
 
-grid.difficultyCheck = function() {
+grid.optionsCheck = function() {
   // listens to buttons in the 'Options' section
-  $(".game-options__container").on("click", function() {
+  $('.game-options__container').on('click', function() {
     grid.reset();
     // grid.hideResults();
     let difficulty = $('input[name=level]:checked').val();
     grid.tileStyle = $('input[name=tile]:checked').val();
     $('.game-menu-difficulty__display').html(difficulty);
-    if (difficulty === "easy") {
+    if (difficulty === 'easy') {
       grid.changeGrid(3);
     }
-    else if (difficulty === "medium") {
+    else if (difficulty === 'medium') {
       grid.changeGrid(4);
     }
-    else if (difficulty === "hard") {
+    else if (difficulty === 'hard') {
       grid.changeGrid(5);
     }
-    else if (difficulty === "wizard") {
+    else if (difficulty === 'wizard') {
       grid.changeGrid(6);
     }
 
-    if (grid.tileStyle === "pug" || grid.tileStyle === "coffee" || grid.tileStyle === "salad") {
+    if (grid.tileStyle === 'pug' || grid.tileStyle === 'coffee' || grid.tileStyle === 'salad') {
       $('.tile').html(grid.imageObjects[grid.tileStyle]);
-      // for (let styles = 0; styles < grid.stylesheetRules.length; styles++) {
-      //   if (grid.stylesheetRules[styles].selectorText === '.correct-tile') {
-      //     grid.stylesheetRules[styles].style['background-color'] = 'initial';
-      //     // add if statement based on which tileStyle
-      //     grid.stylesheetRules[styles].style['background-image'] = `url('../../assets/pug.png')`;
-      //   }
-      // }
     }
     else if (grid.tileStyle === 'default') {
       $('.tile').empty();
@@ -146,7 +130,7 @@ grid.changeGrid = function(rows) {
   grid.rows = rows;
   $('.grid-container').empty();
   for (let count = 0; count < Math.pow(rows, 2); count++) {
-    $('.grid-container').append(`<div class="tile tile-${count + 1}"></div>`);
+    $('.grid-container').append(`<div class='tile tile-${count + 1}'></div>`);
   }
   $('.grid-container').css(`grid-template-columns`, `repeat(${rows}, calc(100%/${rows})`);
 }
@@ -165,7 +149,7 @@ grid.fillGrid = function (gridArray) {
   $('.tile').empty();
   for (let currItem = 0; currItem < gridArray.length; currItem++) {
     if (gridArray[currItem] === true) {
-      $(".tile-" + (currItem + 1)).addClass("correct-tile");
+      $('.tile-' + (currItem + 1)).addClass('correct-tile');
       if (grid.tileStyle !== '') {
         $('.correct-tile').html(grid.imageObjects[grid.tileStyle]);
       }
@@ -179,8 +163,9 @@ grid.reset = function() {
   grid.hideResults();
   grid.disablePlayerFillGrid();
   grid.disableForceCheck();
-  clearInterval(timer.initialTimer);
-  clearInterval(timer.playerTimer);
+  clearInterval(grid.initialTimer);
+  clearInterval(grid.playerTimer);
+  $('.game-menu-timer').html('0:10');
 }
 
 grid.forceCheck = function() {
@@ -189,15 +174,15 @@ grid.forceCheck = function() {
     grid.playerGuessToArray();
     grid.accuracyCheck(grid.playerGrid, grid.answerGrid);
     grid.displayResults();
-    clearInterval(timer.initialTimer);
-    clearInterval(timer.playerTimer);
+    clearInterval(grid.initialTimer);
+    clearInterval(grid.playerTimer);
   });
 }
 
 grid.playerFillGrid = function () {
   // allow the player to toggle the HTML tiles
   $('.tile').on('click', function () {
-    $(this).toggleClass("correct-tile");
+    $(this).toggleClass('correct-tile');
     if ($(this).children().hasClass(grid.tileStyle)) {
       $(this).empty();
     }
@@ -239,14 +224,13 @@ grid.playerGuessToArray = function () {
   grid.playerGrid = [];
   $('.grid-container > .tile').each(function () {
     // iterate through each child in the .grid-container and check if they are selected or not
-    if ($(this).hasClass("correct-tile")) {
+    if ($(this).hasClass('correct-tile')) {
       grid.playerGrid.push(true);
     }
     else {
       grid.playerGrid.push(false)
     }
   })
-  console.log(grid.tileClassArray);
 }
 
 grid.accuracyCheck = function (playerArray, answerArray) {
@@ -262,7 +246,7 @@ grid.accuracyCheck = function (playerArray, answerArray) {
 
 grid.clearGrid = function () {
   // clears the HTML grid
-  $(".tile").removeClass("correct-tile");
+  $('.tile').removeClass('correct-tile');
   $('.tile').empty();
 }
 

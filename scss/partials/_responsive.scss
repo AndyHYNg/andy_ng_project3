@@ -1,9 +1,9 @@
 @media (max-width: 1255px) {
     .game-wrapper {
-    grid-template-areas: "header header header header header header header header"
-                         "options options options timer timer timer timer timer"
-                         "options options options game game game game game"
-                         "footer footer footer footer footer footer footer footer";
+    grid-template-areas: 'header header header header header header header header'
+                         'options options options timer timer timer timer timer'
+                         'options options options game game game game game'
+                         'footer footer footer footer footer footer footer footer';
     }
 
     .game-menu {
@@ -27,11 +27,11 @@
     .game-wrapper {
         margin: 0 5%;
         grid-template-areas: 
-        "header header header header header header header header"
-        "options options options options options options options options"
-        "timer timer timer timer timer timer timer timer"
-        "game game game game game game game game"
-        "footer footer footer footer footer footer footer footer";
+        'header header header header header header header header'
+        'options options options options options options options options'
+        'timer timer timer timer timer timer timer timer'
+        'game game game game game game game game'
+        'footer footer footer footer footer footer footer footer';
     }
 
     .game-options {
@@ -40,11 +40,11 @@
 
         &-title {
             &::before {
-                content: "";
+                content: '';
             }
 
             &::after {
-                content: ":";
+                content: ':';
             }
         }
 
@@ -103,11 +103,11 @@
         }
 
         &-title::before {
-            content: "{ ";
+            content: '{ ';
         }
 
         &-title::after {
-            content: " }";
+            content: ' }';
         }
 
         &__container {

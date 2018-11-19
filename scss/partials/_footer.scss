@@ -1,4 +1,6 @@
 .footer {
+    grid-area: footer;
+    
     &-text {
         font-family: $main-font;
         font-size: 2rem;

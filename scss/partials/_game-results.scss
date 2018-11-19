@@ -1,11 +1,13 @@
 .game-results {
     font-family: $main-font;
+    text-align: center;
     position: fixed;
-    // overflow-y: scroll;
     height: 100%;
     width: 100%;
     background: linear-gradient(to right, rgba(13, 92, 99, 0.5), rgba(13, 92, 99, 0.5));
     display: none;
+    top: 0;
+    left: 0;
 
     &-wrapper {
         border: 10px solid $font-color;
@@ -53,7 +55,9 @@
         padding-top: 10px;
         padding-bottom: 10px;
         background-color: $accent-color;
-        transition: all 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out,
+                    border-color 0.2s ease-in-out,
+                    background-color 0.2s ease-in-out;
 
         &:focus {
             outline: $highlight-color auto 3px;

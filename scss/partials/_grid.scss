@@ -8,14 +8,10 @@
     margin: 0 10%;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-areas: "header header header header header header header header"
-                         "options options timer timer timer timer timer timer"
-                         "options options game game game game game game"
-                         "footer footer footer footer footer footer footer footer";
-}
-
-header {
-    grid-area: header;
+    grid-template-areas: 'header header header header header header header header'
+                         'options options timer timer timer timer timer timer'
+                         'options options game game game game game game'
+                         'footer footer footer footer footer footer footer footer';
 }
 
 .game-grid-wrapper {
@@ -46,23 +42,6 @@ header {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-.game-results {
-    text-align: center;
-    width: 50%;
-    height: 25vh;
-    background: white;
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-}
-
-footer {
-    grid-area: footer;
 }
 
 .pug,

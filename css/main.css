@@ -132,25 +132,27 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-.header__h1 {
-  text-transform: uppercase;
-  font-family: 'Muli', sans-serif;
-  font-weight: 800;
-  text-align: center;
-  font-size: 5rem;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  line-height: 5rem;
-  color: black; }
-  .header__h1::before {
-    content: '{ '; }
-  .header__h1::after {
-    content: ' }'; }
+.header {
+  grid-area: header; }
+  .header__h1 {
+    text-transform: uppercase;
+    font-family: 'Muli', sans-serif;
+    font-weight: 800;
+    text-align: center;
+    font-size: 5rem;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    line-height: 5rem;
+    color: black; }
+    .header__h1::before {
+      content: '{ '; }
+    .header__h1::after {
+      content: ' }'; }
 
 .game-options {
   padding: 15px;
   background-color: #247b7b;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 2rem;
   text-align: center;
   grid-area: options;
@@ -220,9 +222,9 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #0d5c63;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out; }
+    -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out; }
     .game-options-start:focus {
       outline: #1B3341 auto 3px; }
     .game-options-start:hover {
@@ -239,10 +241,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   margin: 0 10%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-areas: "header header header header header header header header" "options options timer timer timer timer timer timer" "options options game game game game game game" "footer footer footer footer footer footer footer footer"; }
-
-header {
-  grid-area: header; }
+  grid-template-areas: 'header header header header header header header header' 'options options timer timer timer timer timer timer' 'options options game game game game game game' 'footer footer footer footer footer footer footer footer'; }
 
 .game-grid-wrapper {
   grid-area: game;
@@ -274,23 +273,6 @@ header {
   background-position: center;
   background-repeat: no-repeat; }
 
-.game-results {
-  text-align: center;
-  width: 50%;
-  height: 25vh;
-  background: white;
-  position: absolute;
-  z-index: 10;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  display: none; }
-
-footer {
-  grid-area: footer; }
-
 .pug,
 .salad,
 .coffee {
@@ -300,6 +282,7 @@ footer {
 
 .game-results {
   font-family: "Muli", sans-serif;
+  text-align: center;
   position: fixed;
   height: 100%;
   width: 100%;
@@ -307,7 +290,9 @@ footer {
   background: -webkit-linear-gradient(left, rgba(13, 92, 99, 0.5), rgba(13, 92, 99, 0.5));
   background: -o-linear-gradient(left, rgba(13, 92, 99, 0.5), rgba(13, 92, 99, 0.5));
   background: linear-gradient(to right, rgba(13, 92, 99, 0.5), rgba(13, 92, 99, 0.5));
-  display: none; }
+  display: none;
+  top: 0;
+  left: 0; }
   .game-results-wrapper {
     border: 10px solid #FFFFFA;
     background: #247b7b;
@@ -357,9 +342,9 @@ footer {
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #0d5c63;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out; }
+    -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out; }
     .game-results-button:focus {
       outline: #1B3341 auto 3px; }
     .game-results-button:hover {
@@ -400,9 +385,9 @@ footer {
     border: 1px solid #FFFFFA;
     margin-right: 10px;
     background-color: #0d5c63;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out; }
+    -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out; }
     .game-menu__check-button:focus {
       outline: #1B3341 auto 3px; }
     .game-menu__check-button:hover {
@@ -410,15 +395,17 @@ footer {
       border-color: #0d5c63;
       background-color: #FFFFFA; }
 
-.footer-text {
-  font-family: "Muli", sans-serif;
-  font-size: 2rem;
-  text-align: right;
-  margin: 10px 0 0 0; }
+.footer {
+  grid-area: footer; }
+  .footer-text {
+    font-family: "Muli", sans-serif;
+    font-size: 2rem;
+    text-align: right;
+    margin: 10px 0 0 0; }
 
 @media (max-width: 1255px) {
   .game-wrapper {
-    grid-template-areas: "header header header header header header header header" "options options options timer timer timer timer timer" "options options options game game game game game" "footer footer footer footer footer footer footer footer"; }
+    grid-template-areas: 'header header header header header header header header' 'options options options timer timer timer timer timer' 'options options options game game game game game' 'footer footer footer footer footer footer footer footer'; }
   .game-menu {
     width: 80%; } }
 
@@ -432,7 +419,7 @@ footer {
 @media (max-width: 999px) {
   .game-wrapper {
     margin: 0 5%;
-    grid-template-areas: "header header header header header header header header" "options options options options options options options options" "timer timer timer timer timer timer timer timer" "game game game game game game game game" "footer footer footer footer footer footer footer footer"; }
+    grid-template-areas: 'header header header header header header header header' 'options options options options options options options options' 'timer timer timer timer timer timer timer timer' 'game game game game game game game game' 'footer footer footer footer footer footer footer footer'; }
   .game-options {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -440,9 +427,9 @@ footer {
     flex-direction: row;
     margin-bottom: 20px; }
     .game-options-title::before {
-      content: ""; }
+      content: ''; }
     .game-options-title::after {
-      content: ":"; }
+      content: ':'; }
     .game-options-description {
       width: 25%;
       margin-right: 10px; }
@@ -487,9 +474,9 @@ footer {
     .game-options-info {
       text-align: center; }
     .game-options-title::before {
-      content: "{ "; }
+      content: '{ '; }
     .game-options-title::after {
-      content: " }"; }
+      content: ' }'; }
     .game-options__container {
       width: 100%; } }
 

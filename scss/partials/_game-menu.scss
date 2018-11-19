@@ -30,7 +30,9 @@
         border: 1px solid $font-color;
         margin-right: 10px;
         background-color: $accent-color;
-        transition: all 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out,
+                    border-color 0.2s ease-in-out,
+                    background-color 0.2s ease-in-out;
 
         &:focus {
             outline: $highlight-color auto 3px;
