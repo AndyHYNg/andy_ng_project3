@@ -1,6 +1,3 @@
-// when selecting tile, you need to adjust fillgrid and enable player fill grid with a modifier of the selected tile
-
-
 const grid = {};
 grid.correctCount = 0;
 grid.rows = 4;
@@ -19,6 +16,7 @@ grid.imageObjects = {
 }
 
 grid.init = function() {
+  // listens for any options selection and 'Start!' button listener
   grid.optionsCheck();
   grid.startGame();
 }
@@ -83,7 +81,7 @@ grid.playerPhase = function () {
 
   // Adds an extra '0' in the displayed timer when the timer hits single digits
   else if (grid.countdown < 10) {
-    $('.game-menu-timer').css('color', 'red');
+    $('.game-menu-timer').css('color', 'yellow');
     $('.game-menu-timer').html('0:0' + grid.countdown);
   }
 
@@ -97,8 +95,11 @@ grid.playerPhase = function () {
 grid.optionsCheck = function() {
   // listens to buttons in the 'Options' section
   $('.game-options__container').on('click', function() {
+
+    // resets the game if an option was selected mid-game through
     grid.reset();
-    // grid.hideResults();
+
+    // adjusts difficulty
     let difficulty = $('input[name=level]:checked').val();
     grid.tileStyle = $('input[name=tile]:checked').val();
     $('.game-menu-difficulty__display').html(difficulty);
@@ -115,6 +116,7 @@ grid.optionsCheck = function() {
       grid.changeGrid(6);
     }
 
+    // show sample of the tile change
     if (grid.tileStyle === 'pug' || grid.tileStyle === 'coffee' || grid.tileStyle === 'salad') {
       $('.tile').html(grid.imageObjects[grid.tileStyle]);
     }
@@ -137,6 +139,7 @@ grid.changeGrid = function(rows) {
 }
 
 grid.randomGrid = function (rows) {
+  // creates an array of boolean values to populate the grid
   filledGrid = [];
   // _.sample random chooses one element in the array of elements in the argument
   for (let currRow = 0; currRow < Math.pow(rows, 2); currRow++) {
@@ -166,11 +169,12 @@ grid.reset = function() {
   grid.disableForceCheck();
   clearInterval(grid.initialTimer);
   clearInterval(grid.playerTimer);
+  $('.game-menu-timer').css('color', '#FFFFFA');
   $('.game-menu-timer').html('0:10');
 }
 
 grid.forceCheck = function() {
-  // 'Check!' button interaction
+  // 'Check ma grid!' button interaction
   $('.game-menu__check-button').on('click', function() {
     grid.playerGuessToArray();
     grid.accuracyCheck(grid.playerGrid, grid.answerGrid);
@@ -194,14 +198,17 @@ grid.playerFillGrid = function () {
 }
 
 grid.disablePlayerFillGrid = function () {
+  // stops player from toggling the grid
   $('.tile').off('click');
 }
 
 grid.disableForceCheck = function() {
+  // disables 'Check ma grid' button event listener
   $('.game-menu__check-button').off('click');
 }
 
 grid.displayResults = function() {
+  // show results at the end of the game
   grid.disablePlayerFillGrid();
   $('.game-results__accuracy').html(`Accuracy: ${grid.accuracyCheck(grid.playerGrid, grid.answerGrid)}%`);
   $('.game-results__total').html(`Correct tiles: ${grid.correctCount} / ${Math.pow(grid.rows, 2)}`);
@@ -215,12 +222,14 @@ grid.displayResults = function() {
 }
 
 grid.hideResults = function() {
+  // hide results page
   $('.game').css('overflow', 'auto');
   $('.game-results').fadeOut('slow', function() {
   });
 }
 
 grid.playerGuessToArray = function () {
+  // translate the player's guesses from the grid into an array of boolean
   grid.playerGrid = [];
   $('.grid-container > .tile').each(function () {
     // iterate through each child in the .grid-container and check if they are selected or not
@@ -250,7 +259,9 @@ grid.clearGrid = function () {
   $('.tile').empty();
 }
 
+// document ready
 $(function() {
+  // initialize grid
   grid.init();
 });
 
