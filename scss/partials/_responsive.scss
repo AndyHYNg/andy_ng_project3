@@ -114,6 +114,16 @@
             width: 100%;
         }
     }
+
+    .footer {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        &-text {
+            margin: 20px 0 10px 0;
+        }
+    }
 }
 
 @media (max-width: 634px) {
@@ -126,6 +136,7 @@
 
     .game-wrapper {
         min-width: 320px;
+        margin: 0;
     }
 
     .grid-container {

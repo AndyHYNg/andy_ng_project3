@@ -83,6 +83,7 @@ grid.playerPhase = function () {
 
   // Adds an extra '0' in the displayed timer when the timer hits single digits
   else if (grid.countdown < 10) {
+    $('.game-menu-timer').css('color', 'red');
     $('.game-menu-timer').html('0:0' + grid.countdown);
   }
 
@@ -216,7 +217,6 @@ grid.displayResults = function() {
 grid.hideResults = function() {
   $('.game').css('overflow', 'auto');
   $('.game-results').fadeOut('slow', function() {
-    // $('game-results').css('display', 'none');
   });
 }
 

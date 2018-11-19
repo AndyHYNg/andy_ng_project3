@@ -132,6 +132,23 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+.skip-link {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  z-index: 999;
+  background: #1B3341;
+  color: #FFFFFA;
+  font-family: "Muli", sans-serif;
+  font-size: 2rem; }
+
+.skip-link:focus {
+  text-align: center;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  transform: translate(-50%); }
+
 .header {
   grid-area: header; }
   .header__h1 {
@@ -379,6 +396,8 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     font-family: "Muli", sans-serif;
     margin: 0; }
   .game-menu__check-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 2rem;
     font-family: "Muli", sans-serif;
     color: #FFFFFA;
@@ -396,12 +415,26 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
       background-color: #FFFFFA; }
 
 .footer {
-  grid-area: footer; }
+  grid-area: footer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .footer-anchor-links {
+    text-decoration: none;
+    color: black;
+    -webkit-transition: color 0.2s ease-in-out;
+    -o-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out; }
+    .footer-anchor-links:hover {
+      color: #FFFFFA; }
   .footer-text {
     font-family: "Muli", sans-serif;
-    font-size: 2rem;
+    font-size: 1.4rem;
     text-align: right;
-    margin: 10px 0 0 0; }
+    margin: 20px 0; }
 
 @media (max-width: 1255px) {
   .game-wrapper {
@@ -478,7 +511,20 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     .game-options-title::after {
       content: ' }'; }
     .game-options__container {
-      width: 100%; } }
+      width: 100%; }
+  .footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .footer-text {
+      margin: 20px 0 10px 0; } }
 
 @media (max-width: 634px) {
   .game-menu {
@@ -486,7 +532,8 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 @media (max-width: 600px) {
   .game-wrapper {
-    min-width: 320px; }
+    min-width: 320px;
+    margin: 0; }
   .grid-container {
     min-width: 320px;
     min-height: 320px;

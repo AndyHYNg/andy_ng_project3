@@ -1,10 +1,22 @@
 .footer {
     grid-area: footer;
+    display: flex;
+    justify-content: space-between;
+
+    &-anchor-links {
+        text-decoration: none;
+        color: black;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: $font-color;
+        }
+    }
     
     &-text {
         font-family: $main-font;
-        font-size: 2rem;
+        font-size: 1.4rem;
         text-align: right;
-        margin: 10px 0 0 0;
+        margin: 20px 0;
     }
 }
