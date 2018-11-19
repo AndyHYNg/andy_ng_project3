@@ -1,4 +1,5 @@
 @media (max-width: 1255px) {
+    
     .game-wrapper {
     grid-template-areas: 'header header header header header header header header'
                          'options options options timer timer timer timer timer'
@@ -79,6 +80,7 @@
     .game-menu {
         margin-bottom: 20px;
     }
+
     .grid-container {
         height: 100vw;
         width: 100vw;
@@ -90,6 +92,7 @@
 }
 
 @media (max-width: 760px) {
+
     .game-options {
         flex-direction: column;
         
@@ -127,6 +130,7 @@
 }
 
 @media (max-width: 634px) {
+
     .game-menu {
         width: 100%;
     }
@@ -149,8 +153,6 @@
     .grid-container {
         min-width: 320px;
         min-height: 320px;
-        width: 85vw;
-        height: 85vw;
     }
 
     .tile {

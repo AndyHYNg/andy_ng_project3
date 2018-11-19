@@ -541,9 +541,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
     margin: 0; }
   .grid-container {
     min-width: 320px;
-    min-height: 320px;
-    width: 85vw;
-    height: 85vw; }
+    min-height: 320px; }
   .tile {
     border-width: 3px; }
   .game-options__container {
