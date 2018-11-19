@@ -264,11 +264,12 @@ header {
   grid-template-columns: repeat(4, calc(100% / 4)); }
 
 .tile {
+  position: relative;
   border: 5px solid #FFFFFA;
   cursor: pointer; }
 
 .correct-tile {
-  background: #1B3341;
+  background: black;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat; }
@@ -289,6 +290,13 @@ header {
 
 footer {
   grid-area: footer; }
+
+.pug,
+.salad,
+.coffee {
+  position: absolute;
+  top: 0;
+  left: 0; }
 
 .game-results {
   font-family: "Muli", sans-serif;
@@ -328,10 +336,16 @@ footer {
     font-size: 3rem;
     font-family: "Muli", sans-serif;
     color: #FFFFFA; }
+  .game-results__total {
+    font-family: "Muli", sans-serif;
+    font-size: 2rem;
+    color: #FFFFFA;
+    margin: 0; }
   .game-results__accuracy {
     font-family: "Muli", sans-serif;
     font-size: 2rem;
-    color: #FFFFFA; }
+    color: #FFFFFA;
+    margin: 0 0 20px 0; }
   .game-results-button {
     text-transform: uppercase;
     width: 75%;
@@ -516,3 +530,8 @@ footer {
 
 html {
   font-size: 62.5%; }
+
+img {
+  max-width: 100%;
+  display: block;
+  width: 100%; }

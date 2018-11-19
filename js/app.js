@@ -2,10 +2,17 @@
 
 
 const grid = {};
+grid.correctCount = 0;
 grid.rows = 4;
 grid.answerGrid = [];
 grid.tileClassArray = [];
 grid.playerGrid = [];
+grid.tileStyle = "";
+grid.imageObjects = {
+  pug: `<img class='pug' src='../../assets/pug.png' alt='smiling pug dog sitting on floor'>`,
+  salad: `<img class='salad' src='../../assets/salad.png' alt='cartoon image of salad in a bowl'>`,
+  coffee: `<img class='coffee' src='../../assets/coffee.png' alt='cartoon image of coffee in a cup with coffee beans beside it'>`
+}
 // gets all stylesheet properties
 // grid.stylesheetRules = (document.styleSheets[0]).cssRules;
 
@@ -101,7 +108,7 @@ grid.difficultyCheck = function() {
     grid.reset();
     // grid.hideResults();
     let difficulty = $('input[name=level]:checked').val();
-    let tileStyle = $('input[name=tile]:checked').val();
+    grid.tileStyle = $('input[name=tile]:checked').val();
     $('.game-menu-difficulty__display').html(difficulty);
     if (difficulty === "easy") {
       grid.changeGrid(3);
@@ -115,14 +122,21 @@ grid.difficultyCheck = function() {
     else if (difficulty === "wizard") {
       grid.changeGrid(6);
     }
-    if (tileStyle === "pug" || tileStyle === "prepros" || tileStyle === "salad") {
-      for (let styles = 0; styles < grid.stylesheetRules.length; styles++) {
-        if (grid.stylesheetRules[styles].selectorText === '.correct-tile') {
-          grid.stylesheetRules[styles].style['background-color'] = 'initial';
-          // add if statement based on which tileStyle
-          grid.stylesheetRules[styles].style['background-image'] = `url('../../assets/pug.png')`;
-        }
-      }
+
+    if (grid.tileStyle === "pug" || grid.tileStyle === "coffee" || grid.tileStyle === "salad") {
+      $('.tile').html(grid.imageObjects[grid.tileStyle]);
+      // for (let styles = 0; styles < grid.stylesheetRules.length; styles++) {
+      //   if (grid.stylesheetRules[styles].selectorText === '.correct-tile') {
+      //     grid.stylesheetRules[styles].style['background-color'] = 'initial';
+      //     // add if statement based on which tileStyle
+      //     grid.stylesheetRules[styles].style['background-image'] = `url('../../assets/pug.png')`;
+      //   }
+      // }
+    }
+    else if (grid.tileStyle === 'default') {
+      $('.tile').empty();
+      $('.tile').addClass('correct-tile');
+      grid.tileStyle = '';
     }
   });
 }
@@ -148,9 +162,13 @@ grid.randomGrid = function (rows) {
 
 grid.fillGrid = function (gridArray) {
   // given an array of boolean items, fill the HTML grid
+  $('.tile').empty();
   for (let currItem = 0; currItem < gridArray.length; currItem++) {
     if (gridArray[currItem] === true) {
       $(".tile-" + (currItem + 1)).addClass("correct-tile");
+      if (grid.tileStyle !== '') {
+        $('.correct-tile').html(grid.imageObjects[grid.tileStyle]);
+      }
     }
   }
 }
@@ -180,7 +198,12 @@ grid.playerFillGrid = function () {
   // allow the player to toggle the HTML tiles
   $('.tile').on('click', function () {
     $(this).toggleClass("correct-tile");
-    // $(this).innerHTML(`<img src='../../assets/${}.png`);
+    if ($(this).children().hasClass(grid.tileStyle)) {
+      $(this).empty();
+    }
+    else {
+      $(this).html(grid.imageObjects[grid.tileStyle]);
+    }
   });
 }
 
@@ -195,6 +218,7 @@ grid.disableForceCheck = function() {
 grid.displayResults = function() {
   grid.disablePlayerFillGrid();
   $('.game-results__accuracy').html(`Accuracy: ${grid.accuracyCheck(grid.playerGrid, grid.answerGrid)}%`);
+  $('.game-results__total').html(`Correct tiles: ${grid.correctCount} / ${Math.pow(grid.rows, 2)}`);
   $('.game').css('overflow', 'hidden');
   $('.game-results').fadeIn('slow', function () {
     $('.game-results').css('display', 'block');
@@ -227,18 +251,19 @@ grid.playerGuessToArray = function () {
 
 grid.accuracyCheck = function (playerArray, answerArray) {
   // returns a percentage of how accurate the player's grid with the answer grid
-  let correctCount = 0;
+  grid.correctCount = 0;
   for (let arrayItemCheck = 0; arrayItemCheck < playerArray.length; arrayItemCheck++) {
     if (playerArray[arrayItemCheck] === answerArray[arrayItemCheck]) {
-      correctCount++;
+      grid.correctCount++;
     }
   }
-  return Math.floor(correctCount / playerArray.length * 100);
+  return Math.floor(grid.correctCount / playerArray.length * 100);
 }
 
 grid.clearGrid = function () {
   // clears the HTML grid
   $(".tile").removeClass("correct-tile");
+  $('.tile').empty();
 }
 
 $(function() {

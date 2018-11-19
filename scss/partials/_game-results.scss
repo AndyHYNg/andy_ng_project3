@@ -28,10 +28,18 @@
         color: $font-color;
     }
 
+    &__total {
+        font-family: $main-font;
+        font-size: 2rem;
+        color: $font-color;
+        margin: 0;
+    }
+
     &__accuracy {
         font-family: $main-font;
         font-size: 2rem;
         color: $font-color;
+        margin: 0 0 20px 0;
     }
 
     &-button {

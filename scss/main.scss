@@ -1,6 +1,5 @@
 @import 'partials/setup';
 @import 'partials/variables';
-@import 'partials/mixin';
 @import 'partials/header';
 @import 'partials/game-options';
 @import 'partials/grid';
@@ -11,4 +10,10 @@
 
 html {
     font-size: 62.5%;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    width: 100%;
 }

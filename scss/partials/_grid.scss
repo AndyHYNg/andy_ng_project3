@@ -36,12 +36,13 @@ header {
 }
 
 .tile {
+    position: relative;
     border: 5px solid $font-color;
     cursor: pointer;
 }
 
 .correct-tile {
-    background: $highlight-color;
+    background: black;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -62,4 +63,12 @@ header {
 
 footer {
     grid-area: footer;
+}
+
+.pug,
+.salad,
+.coffee {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
